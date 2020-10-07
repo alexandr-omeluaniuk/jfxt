@@ -10,5 +10,7 @@ package ss.jfxt.component;
  * @author alex
  */
 public class MaterialIcon {
-    
+//    static {
+//        Font.loadFont(MaterialIcon.class.getResource("/ss/jfxt/component/material-icons.woff2").toExternalForm(), 10);
+//    }
 }

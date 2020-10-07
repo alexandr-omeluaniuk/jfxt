@@ -3,3 +3,10 @@ plugins {
 }
 
 description = 'Java FX components'
+
+dependencies {
+    api "org.openjfx:javafx-controls:15"
+    implementation "org.openjfx:javafx-controls:15:linux"
+    api "org.openjfx:javafx-fxml:15"
+    implementation "org.openjfx:javafx-fxml:15:linux"
+}

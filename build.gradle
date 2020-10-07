@@ -11,3 +11,9 @@ subprojects {
     apply plugin: 'java'
     version = '1.0'
 }
+
+plugins.withType(JavaPlugin).configureEach {
+    java {
+        modularity.inferModulePath = true
+    }
+}

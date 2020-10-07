@@ -4,7 +4,9 @@
  * and open the template in the editor.
  */
 
-module ss.jfxt.components{
+module ss.jfxt.components {
+    requires javafx.controls;
+    requires javafx.fxml;
     
     exports ss.jfxt.component;
 }
