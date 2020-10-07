@@ -40,7 +40,7 @@ public class Main extends Application {
         stage.setHeight(bounds.getHeight());
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("fxml/primary.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
-        scene.getStylesheets().setAll("style/global.css");
+        //scene.getStylesheets().setAll("style/global.css");
         stage.setScene(scene);
         stage.show();
     }
