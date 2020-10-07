@@ -1,12 +1,11 @@
 plugins {
     id 'java-library'
+    id 'org.openjfx.javafxplugin' version '0.0.8'
+}
+
+javafx {
+    version = "15"
+    modules = [ 'javafx.controls' ]
 }
 
 description = 'Java FX components'
-
-dependencies {
-    api "org.openjfx:javafx-controls:15"
-    implementation "org.openjfx:javafx-controls:15:linux"
-    api "org.openjfx:javafx-fxml:15"
-    implementation "org.openjfx:javafx-fxml:15:linux"
-}

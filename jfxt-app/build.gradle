@@ -17,6 +17,10 @@ description = 'Java FX application'
 
 mainClassName = 'ss.jfxt.app.Main'
 
+dependencies {
+    implementation project(':jfxt-components')
+}
+
 jlink {
     options = ['--strip-debug', '--compress', '2', '--no-header-files', '--no-man-pages']
     launcher {

@@ -6,7 +6,6 @@
 
 module ss.jfxt.components {
     requires javafx.controls;
-    requires javafx.fxml;
     
     exports ss.jfxt.component;
 }

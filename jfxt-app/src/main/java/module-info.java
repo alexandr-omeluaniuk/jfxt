@@ -7,6 +7,7 @@
 module ss.jfxt.app {
     requires javafx.controls;
     requires javafx.fxml;
+    requires ss.jfxt.components;
 
     opens ss.jfxt.app.controller to javafx.fxml;
     exports ss.jfxt.app;
