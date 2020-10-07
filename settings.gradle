@@ -1,0 +1,5 @@
+rootProject.name = 'JFXT'
+
+include ':jfxt-app'
+
+
