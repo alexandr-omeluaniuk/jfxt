@@ -7,25 +7,17 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
+<?import ss.jfxt.component.MatToolbar?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ss.jfxt.app.controller.PrimaryController">
    <top>
-      <ToolBar prefHeight="40.0" styleClass="toolbar" BorderPane.alignment="CENTER">
-         <items>
-            <HBox HBox.hgrow="ALWAYS">
-               <children>
-                  <Pane HBox.hgrow="ALWAYS">
-                     <children>
-                        <Label fx:id="toolbarLabel" />
-                     </children>
-                  </Pane>
-                  <ButtonBar>
-                    <buttons>
-                      <Button fx:id="closeAppButton" mnemonicParsing="false" onAction="#onClose" text="Close" />
-                    </buttons>
-                  </ButtonBar>
-               </children></HBox>
-         </items>
-      </ToolBar>
+       <MatToolbar>
+           <leftSide>
+               
+           </leftSide>
+           <rightSide>
+               
+           </rightSide>
+       </MatToolbar>
    </top>
 </BorderPane>

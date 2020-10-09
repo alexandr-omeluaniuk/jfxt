@@ -15,16 +15,16 @@ import ss.jfxt.component.MaterialIcon;
  * @author alex
  */
 public class PrimaryController {
-    @FXML
-    private Label toolbarLabel;
-    
-    @FXML
-    public void initialize() {
-        toolbarLabel.setText("Hello Alex");
-    }
-    
-    @FXML
-    public void onClose() {
-        Platform.exit();
-    }
+//    @FXML
+//    private Label toolbarLabel;
+//    
+//    @FXML
+//    public void initialize() {
+//        toolbarLabel.setText("Hello Alex");
+//    }
+//    
+//    @FXML
+//    public void onClose() {
+//        Platform.exit();
+//    }
 }
