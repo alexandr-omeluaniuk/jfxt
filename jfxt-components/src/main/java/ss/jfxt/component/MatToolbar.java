@@ -26,12 +26,11 @@ public class MatToolbar extends BorderPane {
      * Constructor.
      */
     public MatToolbar() {
+        this.getStylesheets().add(getClass().getResource("mat-toolbar.css").toExternalFo‌​rm());
         this.getStyleClass().add("mat-toolbar");
         this.setLeft(leftSide);
-        leftSide.getStyleClass().add("tool-bar-left-box");
         leftSide.setPickOnBounds(false);
         this.setRight(rightSide);
-        rightSide.getStyleClass().add("tool-bar-right-box");
         rightSide.setPickOnBounds(false);
     }
     // ============================================================= SET & GET ============================================================
