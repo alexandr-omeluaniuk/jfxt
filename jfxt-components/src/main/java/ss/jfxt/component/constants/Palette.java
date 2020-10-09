@@ -11,7 +11,7 @@ package ss.jfxt.component.constants;
  */
 public enum Palette {
     /** Primary color. */
-    PRIMARY_COLOR,
+    PRIMARY,
     /** Secondary color. */
-    SECONDARY_COLOR
+    SECONDARY
 }

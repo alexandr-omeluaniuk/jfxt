@@ -25,7 +25,7 @@ public class Theme {
     /** Primary color. */
     private final ObjectProperty<Color> primaryColor = new SimpleObjectProperty<>(Color.web("#1976d2"));
     /** Secondary color. */
-    private final ObjectProperty<Color> secondaryColor = new SimpleObjectProperty<>(Color.web("#1976d2"));
+    private final ObjectProperty<Color> secondaryColor = new SimpleObjectProperty<>(Color.web("#ff3ad5"));
     // ===================================================== PUBLIC =======================================================================
     /**
      * Apply background color.
@@ -35,9 +35,9 @@ public class Theme {
      * @return node.
      */
     public <T extends Parent> T applyBackgroundColor(T node, Palette color) {
-        if (color == Palette.PRIMARY_COLOR) {
+        if (color == Palette.PRIMARY) {
             node.styleProperty().bind(backgroundColor(primaryColor));
-        } else if (color == Palette.SECONDARY_COLOR) {
+        } else if (color == Palette.SECONDARY) {
             node.styleProperty().bind(backgroundColor(secondaryColor));
         }
         
@@ -54,15 +54,15 @@ public class Theme {
         return theme;
     }
     // ===================================================== SET & GET ====================================================================
-    public ObjectProperty<Color> primaryColorProperty() {
-        return primaryColor;
-    }
-    public final Color getPrimaryColor() {
-        return primaryColorProperty().get();
-    }
-    public final void setPrimaryColor(Color base) {
-        primaryColorProperty().set(base);
-    }
+//    public ObjectProperty<Color> primaryColorProperty() {
+//        return primaryColor;
+//    }
+//    public final Color getPrimaryColor() {
+//        return primaryColorProperty().get();
+//    }
+//    public final void setPrimaryColor(Color base) {
+//        primaryColorProperty().set(base);
+//    }
     // ===================================================== PRIVATE ======================================================================
     private String toRgba(Color color) {
         int r = (int) (255 * color.getRed());
@@ -75,7 +75,7 @@ public class Theme {
         ReadOnlyStringWrapper css = new ReadOnlyStringWrapper();
         css.bind(Bindings.createStringBinding(() -> String.format(
              "-fx-background-color: %s; ",
-            toRgba(getPrimaryColor())), color));
+            toRgba(color.get())), color));
         return css.getReadOnlyProperty();
     }
 }

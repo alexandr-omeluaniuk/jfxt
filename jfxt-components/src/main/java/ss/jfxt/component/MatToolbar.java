@@ -27,9 +27,10 @@ public class MatToolbar extends BorderPane {
      * Constructor.
      */
     public MatToolbar() {
+        System.out.println(color);
         this.getStylesheets().add(getClass().getResource("mat-toolbar.css").toExternalFo‌​rm());
         this.getStyleClass().add("mat-toolbar");
-        Theme.getTheme().applyBackgroundColor(this, Palette.PRIMARY_COLOR);
+        Theme.getTheme().applyBackgroundColor(this, Palette.SECONDARY);
         this.setLeft(leftSide);
         leftSide.setPickOnBounds(false);
         this.setRight(rightSide);
