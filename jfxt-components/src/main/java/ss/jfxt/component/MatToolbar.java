@@ -5,6 +5,8 @@
  */
 package ss.jfxt.component;
 
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
 import javafx.scene.layout.BorderPane;
@@ -22,15 +24,13 @@ public class MatToolbar extends BorderPane {
     /** Toolbar right side. */
     private final HBox rightSide = new HBox();
     /** Color. */
-    private Palette color;
+    private final ObjectProperty<Palette> color = new SimpleObjectProperty<>(Palette.PRIMARY);
     /**
      * Constructor.
      */
     public MatToolbar() {
-        System.out.println(color);
         this.getStylesheets().add(getClass().getResource("mat-toolbar.css").toExternalFo‌​rm());
         this.getStyleClass().add("mat-toolbar");
-        Theme.getTheme().applyBackgroundColor(this, Palette.SECONDARY);
         this.setLeft(leftSide);
         leftSide.setPickOnBounds(false);
         this.setRight(rightSide);
@@ -50,9 +50,13 @@ public class MatToolbar extends BorderPane {
         return this.rightSide.getChildren();
     }
     public Palette getColor() {
-        return color;
+        return colorProperty().get();
     }
     public void setColor(Palette color) {
-        this.color = color;
+        colorProperty().set(color);
+        Theme.getTheme().applyBackgroundColor(this, colorProperty().get());
+    }
+    public final ObjectProperty<Palette> colorProperty() {
+        return color;
     }
 }
