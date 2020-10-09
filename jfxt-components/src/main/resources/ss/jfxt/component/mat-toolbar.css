@@ -9,7 +9,5 @@ and open the template in the editor.
 */
 
 .mat-toolbar {
-    -fx-color: #fff;
-    -fx-background-color: #1976d2;
     -fx-min-height: 56px;
 }

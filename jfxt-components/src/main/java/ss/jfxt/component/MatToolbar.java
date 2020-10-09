@@ -6,10 +6,11 @@
 package ss.jfxt.component;
 
 import javafx.collections.ObservableList;
-import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
+import ss.jfxt.component.common.Theme;
+import ss.jfxt.component.constants.Palette;
 
 /**
  * Material toolbar.
@@ -17,17 +18,18 @@ import javafx.scene.layout.HBox;
  */
 public class MatToolbar extends BorderPane {
     /** Toolbar left side */
-    @FXML
     private final HBox leftSide = new HBox();
     /** Toolbar right side. */
-    @FXML
     private final HBox rightSide = new HBox();
+    /** Color. */
+    private Palette color;
     /**
      * Constructor.
      */
     public MatToolbar() {
         this.getStylesheets().add(getClass().getResource("mat-toolbar.css").toExternalFo‌​rm());
         this.getStyleClass().add("mat-toolbar");
+        Theme.getTheme().applyBackgroundColor(this, Palette.PRIMARY_COLOR);
         this.setLeft(leftSide);
         leftSide.setPickOnBounds(false);
         this.setRight(rightSide);
@@ -45,5 +47,11 @@ public class MatToolbar extends BorderPane {
     }
     public ObservableList<Node> getRightSide() {
         return this.rightSide.getChildren();
+    }
+    public Palette getColor() {
+        return color;
+    }
+    public void setColor(Palette color) {
+        this.color = color;
     }
 }
