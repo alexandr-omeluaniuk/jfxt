@@ -13,11 +13,8 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
-import javafx.scene.layout.BorderPane;
 import javafx.stage.Screen;
 import javafx.stage.StageStyle;
-import ss.jfxt.component.MatToolbar;
-import ss.jfxt.component.MatIcon;
 
 /**
  *
@@ -48,8 +45,5 @@ public class Main extends Application {
         //scene.getStylesheets().setAll("style/global.css");
         stage.setScene(scene);
         stage.show();
-        MatIcon icon = new MatIcon();
-        ((BorderPane) parent).setCenter(icon);
     }
-    
 }

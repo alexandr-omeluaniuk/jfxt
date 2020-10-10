@@ -8,12 +8,13 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import ss.jfxt.component.MatToolbar?>
+<?import ss.jfxt.component.MatIcon?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ss.jfxt.app.controller.PrimaryController">
    <top>
        <MatToolbar color="SECONDARY">
            <leftSide>
-               
+               <MatIcon icon="MENU"></MatIcon>
            </leftSide>
            <rightSide>
                

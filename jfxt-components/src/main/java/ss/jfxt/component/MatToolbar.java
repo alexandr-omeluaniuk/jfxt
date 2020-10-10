@@ -50,13 +50,10 @@ public class MatToolbar extends BorderPane {
         return this.rightSide.getChildren();
     }
     public Palette getColor() {
-        return colorProperty().get();
+        return this.color.get();
     }
     public void setColor(Palette color) {
-        colorProperty().set(color);
-        Theme.getTheme().applyBackgroundColor(this, colorProperty().get());
-    }
-    public final ObjectProperty<Palette> colorProperty() {
-        return color;
+        this.color.set(color);
+        Theme.getTheme().applyBackgroundColor(this, this.color.get());
     }
 }

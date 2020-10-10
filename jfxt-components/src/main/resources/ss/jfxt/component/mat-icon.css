@@ -13,7 +13,7 @@ and open the template in the editor.
   font-family: 'Material Icons';
   font-style: normal;
   font-weight: 400;
-  src: url(maticon.ttf) format('ttf');
+  src: url(font/maticon.ttf) format('ttf');
 }
 
 .material-icons {
