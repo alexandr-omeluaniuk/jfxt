@@ -4,11 +4,11 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 */
 /* 
-    Created on : Oct 7, 2020, 8:37:06 PM
+    Created on : Oct 10, 2020, 3:01:26 PM
     Author     : alex
 */
 
-.material-icons {
+.mat-icon-button {
     font-family: 'Material Icons';
     font-weight: normal;
     font-style: normal;
@@ -22,4 +22,16 @@ and open the template in the editor.
     direction: ltr;
     -webkit-font-feature-settings: 'liga';
     -webkit-font-smoothing: antialiased;
+    -fx-background-radius: 50%;
+    -fx-max-width: 48px;
+    -fx-width: 48px;
+    -fx-max-height: 48px;
+    -fx-height: 48px;
+    -fx-padding: 12px;
+    -fx-background-color: transparent;
+}
+
+.mat-icon-button:hover {
+    -fx-background-color: rgba(255, 255, 255, 0.08);
+    -fx-cursor: hand;
 }

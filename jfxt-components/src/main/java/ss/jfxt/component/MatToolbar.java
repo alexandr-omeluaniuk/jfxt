@@ -8,6 +8,7 @@ package ss.jfxt.component;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.ObservableList;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
@@ -33,8 +34,10 @@ public class MatToolbar extends BorderPane {
         this.getStyleClass().add("mat-toolbar");
         this.setLeft(leftSide);
         leftSide.setPickOnBounds(false);
+        leftSide.setAlignment(Pos.CENTER);
         this.setRight(rightSide);
         rightSide.setPickOnBounds(false);
+        rightSide.setAlignment(Pos.CENTER);
     }
     // ============================================================= SET & GET ============================================================
     public void setLeftSide(Node... nodes) {

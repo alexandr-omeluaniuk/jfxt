@@ -26,6 +26,8 @@ public class Theme {
     private final ObjectProperty<Color> primaryColor = new SimpleObjectProperty<>(Color.web("#1976d2"));
     /** Secondary color. */
     private final ObjectProperty<Color> secondaryColor = new SimpleObjectProperty<>(Color.web("#ff3ad5"));
+    /** Spacing unit. */
+    private final ObjectProperty<Integer> spacingUnit = new SimpleObjectProperty<>(8);
     // ===================================================== PUBLIC =======================================================================
     /**
      * Apply background color.
@@ -40,8 +42,11 @@ public class Theme {
         } else if (color == Palette.SECONDARY) {
             node.styleProperty().bind(backgroundColor(secondaryColor));
         }
-        
         return node ;
+    }
+    public <T extends Parent> T applyMargin(T node, Integer size) {
+        //node.styleProperty().bind(ov);
+        return node;
     }
     /**
      * Get theme instance.

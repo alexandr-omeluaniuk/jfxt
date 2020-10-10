@@ -23,8 +23,8 @@ public class MatIconButton extends Button {
      */
     public MatIconButton() {
         this.setFont(font);
-        this.getStylesheets().add(getClass().getResource("mat-icon.css").toExternalFo‌​rm());
-        this.getStyleClass().add("material-icons");
+        this.getStylesheets().add(getClass().getResource("mat-icon-button.css").toExternalFo‌​rm());
+        this.getStyleClass().add("mat-icon-button");
     }
     // ======================================================== SET & GET =================================================================
     public Icon getIcon() {
