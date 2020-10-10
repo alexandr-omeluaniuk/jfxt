@@ -11,4 +11,5 @@ module ss.jfxt.components {
     opens ss.jfxt.component to javafx.fxml;
     exports ss.jfxt.component;
     exports ss.jfxt.component.constants;
+    exports ss.jfxt.component.common;
 }

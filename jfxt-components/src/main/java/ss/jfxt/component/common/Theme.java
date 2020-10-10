@@ -26,6 +26,10 @@ public class Theme {
     private final ObjectProperty<Color> primaryColor = new SimpleObjectProperty<>(Color.web("#1976d2"));
     /** Secondary color. */
     private final ObjectProperty<Color> secondaryColor = new SimpleObjectProperty<>(Color.web("#ff3ad5"));
+    /** Primary text color */
+    private final ObjectProperty<Color> primaryTextColor = new SimpleObjectProperty<>(Color.web("#ffffff"));
+    /** Secondary text color */
+    private final ObjectProperty<Color> secondaryTextColor = new SimpleObjectProperty<>(Color.web("#ffffff"));
     /** Spacing unit. */
     private final ObjectProperty<Integer> spacingUnit = new SimpleObjectProperty<>(8);
     // ===================================================== PUBLIC =======================================================================
@@ -44,9 +48,13 @@ public class Theme {
         }
         return node ;
     }
-    public <T extends Parent> T applyMargin(T node, Integer size) {
-        //node.styleProperty().bind(ov);
-        return node;
+    public <T extends Parent> T applyTextFill(T node, Palette color) {
+        if (color == Palette.PRIMARY) {
+            node.styleProperty().bind(textFill(primaryTextColor));
+        } else if (color == Palette.SECONDARY) {
+            node.styleProperty().bind(textFill(secondaryTextColor));
+        }
+        return node ;
     }
     /**
      * Get theme instance.
@@ -59,15 +67,12 @@ public class Theme {
         return theme;
     }
     // ===================================================== SET & GET ====================================================================
-//    public ObjectProperty<Color> primaryColorProperty() {
-//        return primaryColor;
-//    }
-//    public final Color getPrimaryColor() {
-//        return primaryColorProperty().get();
-//    }
-//    public final void setPrimaryColor(Color base) {
-//        primaryColorProperty().set(base);
-//    }
+    public final Color getPrimaryColor() {
+        return this.primaryColor.get();
+    }
+    public final void setPrimaryColor(Color base) {
+        this.primaryColor.set(base);
+    }
     // ===================================================== PRIVATE ======================================================================
     private String toRgba(Color color) {
         int r = (int) (255 * color.getRed());
@@ -80,6 +85,13 @@ public class Theme {
         ReadOnlyStringWrapper css = new ReadOnlyStringWrapper();
         css.bind(Bindings.createStringBinding(() -> String.format(
              "-fx-background-color: %s; ",
+            toRgba(color.get())), color));
+        return css.getReadOnlyProperty();
+    }
+    private ReadOnlyStringProperty textFill(ObjectProperty<Color> color) {
+        ReadOnlyStringWrapper css = new ReadOnlyStringWrapper();
+        css.bind(Bindings.createStringBinding(() -> String.format(
+             "-fx-text-fill: %s; ",
             toRgba(color.get())), color));
         return css.getReadOnlyProperty();
     }

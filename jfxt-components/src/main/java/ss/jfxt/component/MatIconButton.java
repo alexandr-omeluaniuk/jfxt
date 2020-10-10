@@ -9,7 +9,9 @@ import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.scene.control.Button;
 import static ss.jfxt.component.MatIcon.font;
+import ss.jfxt.component.common.Theme;
 import ss.jfxt.component.constants.Icon;
+import ss.jfxt.component.constants.Palette;
 
 /**
  * Icon button.
@@ -33,5 +35,6 @@ public class MatIconButton extends Button {
     public void setIcon(Icon icon) {
         this.icon.set(icon);
         this.setText(String.valueOf(this.icon.get().getSymbol()));
+        Theme.getTheme().applyTextFill(this, Palette.PRIMARY);
     }
 }

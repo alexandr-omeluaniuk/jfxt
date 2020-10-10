@@ -8,7 +8,9 @@ package ss.jfxt.app.controller;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.paint.Color;
 import ss.jfxt.component.MatIcon;
+import ss.jfxt.component.common.Theme;
 
 /**
  *
@@ -26,5 +28,9 @@ public class PrimaryController {
     @FXML
     public void onClose() {
         Platform.exit();
+    }
+    @FXML
+    public void onMenu() {
+        Theme.getTheme().setPrimaryColor(Color.BROWN);
     }
 }
