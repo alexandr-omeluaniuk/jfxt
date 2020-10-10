@@ -7,23 +7,21 @@ package ss.jfxt.component;
 
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
-import javafx.scene.control.Label;
-import javafx.scene.text.Font;
+import javafx.scene.control.Button;
+import static ss.jfxt.component.MatIcon.font;
 import ss.jfxt.component.constants.Icon;
 
 /**
- * Material icon.
+ * Icon button.
  * @author alex
  */
-public class MatIcon extends Label {
-    /** Icon font. */
-    protected static final Font font = Font.loadFont(MatIcon.class.getResourceAsStream("font/maticon.ttf"), 24);
+public class MatIconButton extends Button {
     /** Icon. */
     private final ObjectProperty<Icon> icon = new SimpleObjectProperty<>(null);
     /**
      * Constructor.
      */
-    public MatIcon() {
+    public MatIconButton() {
         this.setFont(font);
         this.getStylesheets().add(getClass().getResource("mat-icon.css").toExternalFo‌​rm());
         this.getStyleClass().add("material-icons");
