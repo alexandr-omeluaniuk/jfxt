@@ -17,7 +17,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Screen;
 import javafx.stage.StageStyle;
 import ss.jfxt.component.MatToolbar;
-import ss.jfxt.component.MaterialIcon;
+import ss.jfxt.component.MatIcon;
 
 /**
  *
@@ -48,9 +48,8 @@ public class Main extends Application {
         //scene.getStylesheets().setAll("style/global.css");
         stage.setScene(scene);
         stage.show();
-//        MaterialIcon icon = new MaterialIcon();
-//        icon.setIcon("home");
-//        ((BorderPane) parent).setCenter(icon);
+        MatIcon icon = new MatIcon();
+        ((BorderPane) parent).setCenter(icon);
     }
     
 }
