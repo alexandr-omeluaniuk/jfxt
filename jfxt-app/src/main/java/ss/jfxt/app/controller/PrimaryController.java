@@ -23,8 +23,8 @@ public class PrimaryController {
 //        toolbarLabel.setText("Hello Alex");
 //    }
 //    
-//    @FXML
-//    public void onClose() {
-//        Platform.exit();
-//    }
+    @FXML
+    public void onClose() {
+        Platform.exit();
+    }
 }

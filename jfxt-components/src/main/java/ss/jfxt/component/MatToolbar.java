@@ -34,10 +34,10 @@ public class MatToolbar extends BorderPane {
         this.getStyleClass().add("mat-toolbar");
         this.setLeft(leftSide);
         leftSide.setPickOnBounds(false);
-        leftSide.setAlignment(Pos.CENTER);
+        leftSide.setAlignment(Pos.CENTER_LEFT);
         this.setRight(rightSide);
         rightSide.setPickOnBounds(false);
-        rightSide.setAlignment(Pos.CENTER);
+        rightSide.setAlignment(Pos.CENTER_RIGHT);
     }
     // ============================================================= SET & GET ============================================================
     public void setLeftSide(Node... nodes) {

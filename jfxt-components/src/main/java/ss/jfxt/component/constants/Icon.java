@@ -10,6 +10,7 @@ package ss.jfxt.component.constants;
  * @author alex
  */
 public enum Icon {
+    CLOSE('\ue5cd'),
     MENU('\ue5d2');
     /** Symbol. */
     private final Character symbol;

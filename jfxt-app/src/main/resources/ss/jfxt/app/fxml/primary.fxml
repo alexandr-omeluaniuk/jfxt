@@ -15,10 +15,10 @@
    <top>
        <MatToolbar color="PRIMARY">
            <leftSide>
-               <MatIconButton icon="MENU"/>
+               <MatIconButton icon="MENU" />
            </leftSide>
            <rightSide>
-               
+               <MatIconButton icon="CLOSE" onAction="#onClose"/>
            </rightSide>
        </MatToolbar>
    </top>
