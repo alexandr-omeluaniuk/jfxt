@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ss.jfxt.component.common;
+package ss.fx.material.common;
 
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.ObjectProperty;
@@ -11,7 +11,7 @@ import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.scene.Parent;
 import javafx.scene.paint.Color;
-import ss.jfxt.component.constants.Palette;
+import ss.fx.material.constants.Palette;
 
 /**
  * Material theme.

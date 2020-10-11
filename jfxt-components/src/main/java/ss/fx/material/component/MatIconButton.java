@@ -3,15 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ss.jfxt.component;
+package ss.fx.material.component;
 
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.scene.control.Button;
-import static ss.jfxt.component.MatIcon.font;
-import ss.jfxt.component.common.Theme;
-import ss.jfxt.component.constants.Icon;
-import ss.jfxt.component.constants.Palette;
+import static ss.fx.material.component.MatIcon.font;
+import ss.fx.material.common.Theme;
+import ss.fx.material.constants.Icon;
+import ss.fx.material.constants.Palette;
 
 /**
  * Icon button.

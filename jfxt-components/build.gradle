@@ -8,4 +8,4 @@ javafx {
     modules = [ 'javafx.controls', 'javafx.fxml' ]
 }
 
-description = 'Java FX components'
+description = 'Java FX Material'

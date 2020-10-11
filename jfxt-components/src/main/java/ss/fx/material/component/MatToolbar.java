@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ss.jfxt.component;
+package ss.fx.material.component;
 
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
@@ -12,8 +12,8 @@ import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
-import ss.jfxt.component.common.Theme;
-import ss.jfxt.component.constants.Palette;
+import ss.fx.material.common.Theme;
+import ss.fx.material.constants.Palette;
 
 /**
  * Material toolbar.

@@ -8,8 +8,8 @@ module ss.jfxt.components {
     requires javafx.controls;
     requires javafx.fxml;
     
-    opens ss.jfxt.component to javafx.fxml;
-    exports ss.jfxt.component;
-    exports ss.jfxt.component.constants;
-    exports ss.jfxt.component.common;
+    opens ss.fx.material.component to javafx.fxml;
+    exports ss.fx.material.component;
+    exports ss.fx.material.constants;
+    exports ss.fx.material.common;
 }
