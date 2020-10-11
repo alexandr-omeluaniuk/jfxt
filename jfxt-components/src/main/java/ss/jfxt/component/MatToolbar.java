@@ -38,6 +38,7 @@ public class MatToolbar extends BorderPane {
         this.setRight(rightSide);
         rightSide.setPickOnBounds(false);
         rightSide.setAlignment(Pos.CENTER_RIGHT);
+        Theme.getTheme().applyBackgroundColor(this, this.color.get());
     }
     // ============================================================= SET & GET ============================================================
     public void setLeftSide(Node... nodes) {
@@ -57,6 +58,5 @@ public class MatToolbar extends BorderPane {
     }
     public void setColor(Palette color) {
         this.color.set(color);
-        Theme.getTheme().applyBackgroundColor(this, this.color.get());
     }
 }

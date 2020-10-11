@@ -5,12 +5,13 @@
  */
 package ss.jfxt.component.common;
 
-import java.util.function.Supplier;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.beans.property.ReadOnlyStringProperty;
 import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.value.ObservableValue;
 import javafx.scene.Parent;
 import javafx.scene.paint.Color;
 import ss.jfxt.component.constants.Palette;
@@ -26,10 +27,6 @@ public class Theme {
     private final ObjectProperty<Color> primaryColor = new SimpleObjectProperty<>(Color.web("#1976d2"));
     /** Secondary color. */
     private final ObjectProperty<Color> secondaryColor = new SimpleObjectProperty<>(Color.web("#ff3ad5"));
-    /** Primary text color */
-    private final ObjectProperty<Color> primaryTextColor = new SimpleObjectProperty<>(Color.web("#ffffff"));
-    /** Secondary text color */
-    private final ObjectProperty<Color> secondaryTextColor = new SimpleObjectProperty<>(Color.web("#ffffff"));
     /** Spacing unit. */
     private final ObjectProperty<Integer> spacingUnit = new SimpleObjectProperty<>(8);
     // ===================================================== PUBLIC =======================================================================
@@ -41,20 +38,27 @@ public class Theme {
      * @return node.
      */
     public <T extends Parent> T applyBackgroundColor(T node, Palette color) {
-        if (color == Palette.PRIMARY) {
-            node.styleProperty().bind(backgroundColor(primaryColor));
-        } else if (color == Palette.SECONDARY) {
-            node.styleProperty().bind(backgroundColor(secondaryColor));
-        }
-        return node ;
+        ObjectProperty<Color> colorProperty = getColor(color);
+        ReadOnlyStringWrapper css = new ReadOnlyStringWrapper();
+        css.bind(Bindings.createStringBinding(() -> String.format(
+             "-fx-background-color: %s; ", toRgba(colorProperty.get())), colorProperty));
+        node.styleProperty().bind(css.getReadOnlyProperty());
+        return node;
     }
-    public <T extends Parent> T applyTextFill(T node, Palette color) {
-        if (color == Palette.PRIMARY) {
-            node.styleProperty().bind(textFill(primaryTextColor));
-        } else if (color == Palette.SECONDARY) {
-            node.styleProperty().bind(textFill(secondaryTextColor));
-        }
-        return node ;
+    /**
+     * Apply contrast color.
+     * @param <T> node type.
+     * @param node node.
+     * @param color color.
+     * @return node.
+     */
+    public <T extends Parent> T applyContrastColor(T node, Palette color) {
+        ObjectProperty<Color> colorProperty = getColor(color);
+        ReadOnlyStringWrapper css = new ReadOnlyStringWrapper();
+        css.bind(Bindings.createStringBinding(() -> String.format(
+             "-fx-text-fill: %s; ", toRgba(colorProperty.get())), colorProperty));
+        node.styleProperty().bind(css.getReadOnlyProperty());
+        return node;
     }
     /**
      * Get theme instance.
@@ -81,18 +85,11 @@ public class Theme {
         int a = (int) (255 * color.getOpacity());
         return String.format("#%02x%02x%02x%02x", r, g, b, a);
     }
-    private ReadOnlyStringProperty backgroundColor(ObjectProperty<Color> color) {
-        ReadOnlyStringWrapper css = new ReadOnlyStringWrapper();
-        css.bind(Bindings.createStringBinding(() -> String.format(
-             "-fx-background-color: %s; ",
-            toRgba(color.get())), color));
-        return css.getReadOnlyProperty();
-    }
-    private ReadOnlyStringProperty textFill(ObjectProperty<Color> color) {
-        ReadOnlyStringWrapper css = new ReadOnlyStringWrapper();
-        css.bind(Bindings.createStringBinding(() -> String.format(
-             "-fx-text-fill: %s; ",
-            toRgba(color.get())), color));
-        return css.getReadOnlyProperty();
+    private ObjectProperty<Color> getColor(Palette color) {
+        if (Palette.PRIMARY.equals(color)) {
+            return primaryColor;
+        } else {
+            return secondaryColor;
+        }
     }
 }
