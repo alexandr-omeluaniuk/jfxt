@@ -18,7 +18,7 @@ description = 'Java FX application'
 mainClassName = 'ss.jfxt.app.Main'
 
 dependencies {
-    implementation project(':jfxt-components')
+    implementation project(':fx-material-components')
 }
 
 jlink {
