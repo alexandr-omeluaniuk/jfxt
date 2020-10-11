@@ -27,7 +27,7 @@ public class MatIconButton extends Button {
         this.setFont(font);
         this.getStylesheets().add(getClass().getResource("mat-icon-button.css").toExternalFo‌​rm());
         this.getStyleClass().add("mat-icon-button");
-        Theme.getTheme().applyContrastColor(this, Palette.PRIMARY);
+        Theme.getTheme().applyPaletteContrastColor(this, Palette.PRIMARY);
     }
     // ======================================================== SET & GET =================================================================
     public Icon getIcon() {

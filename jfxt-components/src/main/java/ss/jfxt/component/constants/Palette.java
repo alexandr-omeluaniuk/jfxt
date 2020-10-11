@@ -13,5 +13,5 @@ public enum Palette {
     /** Primary color. */
     PRIMARY,
     /** Secondary color. */
-    SECONDARY
+    SECONDARY;
 }

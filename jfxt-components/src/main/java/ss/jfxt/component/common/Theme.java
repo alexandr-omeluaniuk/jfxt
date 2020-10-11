@@ -7,11 +7,8 @@ package ss.jfxt.component.common;
 
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.ReadOnlyObjectWrapper;
-import javafx.beans.property.ReadOnlyStringProperty;
 import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.beans.property.SimpleObjectProperty;
-import javafx.beans.value.ObservableValue;
 import javafx.scene.Parent;
 import javafx.scene.paint.Color;
 import ss.jfxt.component.constants.Palette;
@@ -37,7 +34,7 @@ public class Theme {
      * @param color palette color.
      * @return node.
      */
-    public <T extends Parent> T applyBackgroundColor(T node, Palette color) {
+    public <T extends Parent> T applyPaletteColor(T node, Palette color) {
         ObjectProperty<Color> colorProperty = getColor(color);
         ReadOnlyStringWrapper css = new ReadOnlyStringWrapper();
         css.bind(Bindings.createStringBinding(() -> String.format(
@@ -52,7 +49,7 @@ public class Theme {
      * @param color color.
      * @return node.
      */
-    public <T extends Parent> T applyContrastColor(T node, Palette color) {
+    public <T extends Parent> T applyPaletteContrastColor(T node, Palette color) {
         ObjectProperty<Color> colorProperty = getColor(color);
         ReadOnlyStringWrapper css = new ReadOnlyStringWrapper();
         css.bind(Bindings.createStringBinding(() -> String.format(
