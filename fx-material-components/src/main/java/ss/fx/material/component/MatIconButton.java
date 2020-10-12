@@ -11,7 +11,6 @@ import javafx.scene.control.Button;
 import static ss.fx.material.component.MatIcon.font;
 import ss.fx.material.common.Theme;
 import ss.fx.material.constants.Icon;
-import ss.fx.material.constants.Palette;
 
 /**
  * Icon button.
@@ -27,7 +26,6 @@ public class MatIconButton extends Button {
         this.setFont(font);
         this.getStylesheets().add(getClass().getResource("mat-icon-button.css").toExternalFo‌​rm());
         this.getStyleClass().add("mat-icon-button");
-        Theme.getTheme().applyPaletteContrastColor(this, Palette.PRIMARY);
     }
     // ======================================================== SET & GET =================================================================
     public Icon getIcon() {
@@ -36,5 +34,6 @@ public class MatIconButton extends Button {
     public void setIcon(Icon icon) {
         this.icon.set(icon);
         this.setText(String.valueOf(this.icon.get().getSymbol()));
+        //Theme.getTheme().applyPaletteContrastColor(this);
     }
 }
