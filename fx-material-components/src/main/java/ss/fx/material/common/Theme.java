@@ -51,19 +51,20 @@ public class Theme {
      * Apply contrast color.
      * @param <T> node type.
      * @param node node.
+     * @param color palette color.
      * @return node.
      */
-    public <T extends Parent> T applyPaletteContrastColor(T node) {
-        ObjectProperty<Color> colorProperty = darkContrastColor;
-        Parent nodeParent = node.getParent();
-        while (nodeParent != null) {
-            if (nodeParent instanceof PaletteColored) {
-                colorProperty = getColor(((PaletteColored) nodeParent).getColor());
-                colorProperty = getContrastColor(colorProperty.get());
-                break;
-            }
-            nodeParent = node.getParent();
-        }
+    public <T extends Parent> T applyPaletteContrastColor(T node, Palette color) {
+        ObjectProperty<Color> colorProperty = Palette.DARK.equals(color) ? darkContrastColor : lightContrastColor;
+//        Parent nodeParent = node.getParent();
+//        while (nodeParent != null) {
+//            if (nodeParent instanceof PaletteColored) {
+//                colorProperty = getColor(((PaletteColored) nodeParent).getColor());
+//                colorProperty = getContrastColor(colorProperty.get());
+//                break;
+//            }
+//            nodeParent = node.getParent();
+//        }
         final ObjectProperty<Color> colorPropertyFinal = colorProperty;
         ReadOnlyStringWrapper css = new ReadOnlyStringWrapper();
         css.bind(Bindings.createStringBinding(() -> String.format(
