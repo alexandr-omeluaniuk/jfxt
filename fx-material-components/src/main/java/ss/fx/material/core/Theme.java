@@ -77,6 +77,11 @@ public class Theme {
         int a = (int) (255 * color.getOpacity());
         return String.format("#%02x%02x%02x%02x", r, g, b, a);
     }
+    /**
+     * Get palette color property.
+     * @param color palette color.
+     * @return color property.
+     */
     private ObjectProperty<Color> getColor(Palette color) {
         if (Palette.PRIMARY.equals(color)) {
             return primaryColor;
@@ -84,6 +89,11 @@ public class Theme {
             return secondaryColor;
         }
     }
+    /**
+     * Get contrast color for target color.
+     * @param color target color.
+     * @return contrast color.
+     */
     private ObjectProperty<Color> getContrastColor(Color color){
         float luminance = (float) (0.2126 * color.getRed()
                 + 0.7152 * color.getGreen()
@@ -105,7 +115,11 @@ public class Theme {
         node.styleProperty().bind(css.getReadOnlyProperty());
         return node;
     }
-    
+    /**
+     * Walk nodes tree.
+     * @param parent parent node.
+     * @param paletteColor parent node palette color.
+     */
     private void walkNode(Parent parent, Palette paletteColor) {
         if (parent instanceof PaletteColor) {
             paletteColor = ((PaletteColor) parent).getColor();
