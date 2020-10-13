@@ -17,7 +17,7 @@ import ss.fx.material.constants.MaterialIcon;
  */
 public class Icon extends Label {
     /** Icon font. */
-    protected static final Font font = Font.loadFont(MaterialIcon.class.getResourceAsStream("font/maticon.ttf"), 24);
+    protected static final Font font = Font.loadFont(Icon.class.getResourceAsStream("font/maticon.ttf"), 24);
     /** Icon. */
     private final ObjectProperty<MaterialIcon> icon = new SimpleObjectProperty<>(null);
     /**
