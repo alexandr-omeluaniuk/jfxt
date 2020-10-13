@@ -13,7 +13,7 @@ import javafx.scene.Node;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import ss.fx.material.api.PaletteColored;
-import ss.fx.material.common.Theme;
+import ss.fx.material.core.Theme;
 import ss.fx.material.constants.Palette;
 
 /**

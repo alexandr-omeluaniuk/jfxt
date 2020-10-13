@@ -9,7 +9,7 @@ import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.scene.control.Button;
 import ss.fx.material.api.PaletteColored;
-import ss.fx.material.common.Theme;
+import ss.fx.material.core.Theme;
 import static ss.fx.material.component.MatIcon.font;
 import ss.fx.material.constants.Icon;
 import ss.fx.material.constants.Palette;

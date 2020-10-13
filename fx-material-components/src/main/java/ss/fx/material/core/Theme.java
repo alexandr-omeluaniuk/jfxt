@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ss.fx.material.common;
+package ss.fx.material.core;
 
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.ObjectProperty;
@@ -11,7 +11,6 @@ import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.scene.Parent;
 import javafx.scene.paint.Color;
-import ss.fx.material.api.PaletteColored;
 import ss.fx.material.constants.Palette;
 
 /**
