@@ -13,21 +13,21 @@ and open the template in the editor.
     font-weight: normal;
     font-style: normal;
     font-size: 24px;
-    line-height: 1;
-    letter-spacing: normal;
     text-transform: none;
     display: inline-block;
     white-space: nowrap;
     word-wrap: normal;
     direction: ltr;
-    -webkit-font-feature-settings: 'liga';
-    -webkit-font-smoothing: antialiased;
+    line-height: 1;
+    -fx-line-height: 1;
     -fx-background-radius: 50%;
     -fx-max-width: 48px;
     -fx-width: 48px;
+    -fx-min-width: 48px;
     -fx-max-height: 48px;
     -fx-height: 48px;
-    -fx-padding: 12px;
+    -fx-max-height: 48px;
+    -fx-padding: 0px;
     -fx-background-color: transparent;
 }
 

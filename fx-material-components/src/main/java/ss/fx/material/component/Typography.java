@@ -17,11 +17,19 @@ import ss.fx.material.api.ContrastColor;
 public class Typography extends Label implements ContrastColor {
     /** Variant. */
     private final ObjectProperty<Variant> variant = new SimpleObjectProperty<>(null);
+    
+    public Typography() {
+        this.styleProperty().addListener((ov, t, t1) -> {
+            System.out.println(ov);
+            System.out.println(t);
+            System.out.println(t1);
+        });
+    }
     /**
      * Typography variant.
      */
     public static enum Variant {
-        H1("6em"),
+        H1("100"),
         H2("3.75em"),
         H3("3em"),
         H4("2.125em"),
@@ -56,6 +64,6 @@ public class Typography extends Label implements ContrastColor {
      */
     public void setVariant(Variant variant) {
         this.variant.set(variant);
-        this.styleProperty().set("-fx-font-size: " + variant.getFontSize() + ";");
+        this.setStyle("-fx-font-size: " + variant.getFontSize() + ";");
     }
 }
