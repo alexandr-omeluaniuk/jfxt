@@ -9,8 +9,11 @@ import javafx.beans.binding.Bindings;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.beans.property.SimpleObjectProperty;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.paint.Color;
+import ss.fx.material.api.ContrastColor;
+import ss.fx.material.api.PaletteColor;
 import ss.fx.material.constants.Palette;
 
 /**
@@ -46,30 +49,8 @@ public class Theme {
         node.styleProperty().bind(css.getReadOnlyProperty());
         return node;
     }
-    /**
-     * Apply contrast color.
-     * @param <T> node type.
-     * @param node node.
-     * @param color palette color.
-     * @return node.
-     */
-    public <T extends Parent> T applyPaletteContrastColor(T node, Palette color) {
-        ObjectProperty<Color> colorProperty = Palette.DARK.equals(color) ? darkContrastColor : lightContrastColor;
-//        Parent nodeParent = node.getParent();
-//        while (nodeParent != null) {
-//            if (nodeParent instanceof PaletteColored) {
-//                colorProperty = getColor(((PaletteColored) nodeParent).getColor());
-//                colorProperty = getContrastColor(colorProperty.get());
-//                break;
-//            }
-//            nodeParent = node.getParent();
-//        }
-        final ObjectProperty<Color> colorPropertyFinal = colorProperty;
-        ReadOnlyStringWrapper css = new ReadOnlyStringWrapper();
-        css.bind(Bindings.createStringBinding(() -> String.format(
-             "-fx-text-fill: %s; ", toRgba(colorPropertyFinal.get())), colorPropertyFinal));
-        node.styleProperty().bind(css.getReadOnlyProperty());
-        return node;
+    public void refresh(Parent root) {
+        walkNode(root, null);
     }
     /**
      * Get theme instance.
@@ -108,5 +89,38 @@ public class Theme {
                 + 0.7152 * (color.getGreen() * 2.2 / 255)
                 + 0.0722 * (color.getBlue() * 2.2 / 255));
         return luminance < 140 ? lightContrastColor : darkContrastColor;
+    }
+    /**
+     * Apply contrast color.
+     * @param <T> node type.
+     * @param node node.
+     * @param color palette color.
+     * @return node.
+     */
+    private <T extends Parent> T applyContrastColor(T node, ObjectProperty<Color> colorProperty) {
+        final ObjectProperty<Color> colorPropertyFinal = colorProperty;
+        ReadOnlyStringWrapper css = new ReadOnlyStringWrapper();
+        css.bind(Bindings.createStringBinding(() -> String.format(
+             "-fx-text-fill: %s; ", toRgba(colorPropertyFinal.get())), colorPropertyFinal));
+        node.styleProperty().bind(css.getReadOnlyProperty());
+        return node;
+    }
+    
+    private void walkNode(Parent parent, Palette paletteColor) {
+        if (parent instanceof PaletteColor) {
+            paletteColor = ((PaletteColor) parent).getColor();
+        }
+        if (parent instanceof ContrastColor) {
+            if (paletteColor != null) {
+                ObjectProperty<Color> colorProperty = getColor(paletteColor);
+                colorProperty = getContrastColor(colorProperty.get());
+                applyContrastColor(parent, colorProperty);
+            }
+        }
+        for (Node node : parent.getChildrenUnmodifiable()) {
+            if (node instanceof Parent) {
+                walkNode((Parent) node, paletteColor);
+            }
+        }
     }
 }

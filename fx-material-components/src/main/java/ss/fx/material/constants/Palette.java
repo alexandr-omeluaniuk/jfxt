@@ -14,8 +14,18 @@ public enum Palette {
     PRIMARY,
     /** Secondary color. */
     SECONDARY,
-    /** Light. */
-    LIGHT,
-    /** Dark. */
-    DARK;
+    /** Error. */
+    ERROR,
+    /** Warning. */
+    WARNING,
+    /** Info. */
+    INFO,
+    /** Success. */
+    SUCCESS,
+    /** Text primary. */
+    TEXT_PRIMARY,
+    /** Text secondary. */
+    TEXT_SECONDARY,
+    /** Text disabled. */
+    TEXT_DISABLED;
 }

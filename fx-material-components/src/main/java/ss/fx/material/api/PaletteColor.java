@@ -11,7 +11,7 @@ import ss.fx.material.constants.Palette;
  * Has palette color property.
  * @author alex
  */
-public interface PaletteColored {
+public interface PaletteColor {
     /**
      * Get palette color.
      * @return palette color.

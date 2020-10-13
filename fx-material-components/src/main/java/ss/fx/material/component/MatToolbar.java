@@ -12,15 +12,15 @@ import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
-import ss.fx.material.api.PaletteColored;
 import ss.fx.material.core.Theme;
 import ss.fx.material.constants.Palette;
+import ss.fx.material.api.PaletteColor;
 
 /**
  * Material toolbar.
  * @author alex
  */
-public class MatToolbar extends BorderPane implements PaletteColored {
+public class MatToolbar extends BorderPane implements PaletteColor {
     /** Toolbar left side */
     private final HBox leftSide = new HBox();
     /** Toolbar right side. */

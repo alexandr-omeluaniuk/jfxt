@@ -8,21 +8,17 @@ package ss.fx.material.component;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.scene.control.Button;
-import ss.fx.material.api.PaletteColored;
-import ss.fx.material.core.Theme;
+import ss.fx.material.api.ContrastColor;
 import static ss.fx.material.component.MatIcon.font;
 import ss.fx.material.constants.Icon;
-import ss.fx.material.constants.Palette;
 
 /**
  * Icon button.
  * @author alex
  */
-public class MatIconButton extends Button implements PaletteColored {
+public class MatIconButton extends Button implements ContrastColor {
     /** Icon. */
     private final ObjectProperty<Icon> icon = new SimpleObjectProperty<>(null);
-    /** Color. */
-    private final ObjectProperty<Palette> color = new SimpleObjectProperty<>(Palette.LIGHT);
     /**
      * Constructor.
      */
@@ -30,7 +26,6 @@ public class MatIconButton extends Button implements PaletteColored {
         this.setFont(font);
         this.getStylesheets().add(getClass().getResource("mat-icon-button.css").toExternalFo‌​rm());
         this.getStyleClass().add("mat-icon-button");
-        Theme.getTheme().applyPaletteContrastColor(this, this.color.get());
     }
     // ======================================================== SET & GET =================================================================
     public Icon getIcon() {
@@ -39,13 +34,5 @@ public class MatIconButton extends Button implements PaletteColored {
     public void setIcon(Icon icon) {
         this.icon.set(icon);
         this.setText(String.valueOf(this.icon.get().getSymbol()));
-    }
-    @Override
-    public Palette getColor() {
-        return this.color.get();
-    }
-    @Override
-    public void setColor(Palette color) {
-        this.color.set(color);
     }
 }

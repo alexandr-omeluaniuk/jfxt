@@ -5,16 +5,16 @@
  */
 package ss.jfxt.app;
 
+import java.io.IOException;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
-
-import java.io.IOException;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.stage.Screen;
+import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import ss.fx.material.core.Theme;
 
 /**
  *
@@ -44,6 +44,7 @@ public class Main extends Application {
         Scene scene = new Scene(parent);
         //scene.getStylesheets().setAll("style/global.css");
         stage.setScene(scene);
+        Theme.getTheme().refresh(parent);
         stage.show();
     }
 }
