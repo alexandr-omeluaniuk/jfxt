@@ -9,7 +9,7 @@ package ss.fx.material.constants;
  * Material icons symbols.
  * @author alex
  */
-public enum Icon {
+public enum MaterialIcon {
     CLOSE('\ue5cd'),
     MENU('\ue5d2');
     /** Symbol. */
@@ -18,7 +18,7 @@ public enum Icon {
      * Constructor.
      * @param symbol 
      */
-    private Icon(Character symbol) {
+    private MaterialIcon(Character symbol) {
         this.symbol = symbol;
     }
     /**

@@ -1,27 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ButtonBar?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ToolBar?>
 <?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
-<?import ss.fx.material.component.MatToolbar?>
-<?import ss.fx.material.component.MatIcon?>
-<?import ss.fx.material.component.MatIconButton?>
+<?import ss.fx.material.component.Toolbar?>
+<?import ss.fx.material.component.Icon?>
+<?import ss.fx.material.component.IconButton?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" 
             prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" 
             fx:controller="ss.jfxt.app.controller.PrimaryController" fx:id="root">
-   <top>
-       <MatToolbar color="PRIMARY">
-           <leftSide>
-               <MatIconButton icon="MENU" onAction="#onMenu"/>
-           </leftSide>
-           <rightSide>
-               <MatIconButton icon="CLOSE" onAction="#onClose"/>
-           </rightSide>
-       </MatToolbar>
-   </top>
+    <top>
+        <Toolbar color="PRIMARY">
+            <leftSide>
+                <IconButton icon="MENU" onAction="#onMenu"/>
+            </leftSide>
+            <rightSide>
+                <IconButton icon="CLOSE" onAction="#onClose"/>
+            </rightSide>
+        </Toolbar>
+    </top>
 </BorderPane>

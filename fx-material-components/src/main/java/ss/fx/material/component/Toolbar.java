@@ -20,7 +20,7 @@ import ss.fx.material.api.PaletteColor;
  * Material toolbar.
  * @author alex
  */
-public class MatToolbar extends BorderPane implements PaletteColor {
+public class Toolbar extends BorderPane implements PaletteColor {
     /** Toolbar left side */
     private final HBox leftSide = new HBox();
     /** Toolbar right side. */
@@ -30,7 +30,7 @@ public class MatToolbar extends BorderPane implements PaletteColor {
     /**
      * Constructor.
      */
-    public MatToolbar() {
+    public Toolbar() {
         this.getStylesheets().add(getClass().getResource("mat-toolbar.css").toExternalFo‌​rm());
         this.getStyleClass().add("mat-toolbar");
         this.setLeft(leftSide);

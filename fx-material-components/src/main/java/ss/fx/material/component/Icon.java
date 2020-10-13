@@ -9,30 +9,30 @@ import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.scene.control.Label;
 import javafx.scene.text.Font;
-import ss.fx.material.constants.Icon;
+import ss.fx.material.constants.MaterialIcon;
 
 /**
  * Material icon.
  * @author alex
  */
-public class MatIcon extends Label {
+public class Icon extends Label {
     /** Icon font. */
-    protected static final Font font = Font.loadFont(MatIcon.class.getResourceAsStream("font/maticon.ttf"), 24);
+    protected static final Font font = Font.loadFont(MaterialIcon.class.getResourceAsStream("font/maticon.ttf"), 24);
     /** Icon. */
-    private final ObjectProperty<Icon> icon = new SimpleObjectProperty<>(null);
+    private final ObjectProperty<MaterialIcon> icon = new SimpleObjectProperty<>(null);
     /**
      * Constructor.
      */
-    public MatIcon() {
+    public Icon() {
         this.setFont(font);
         this.getStylesheets().add(getClass().getResource("mat-icon.css").toExternalFo‌​rm());
         this.getStyleClass().add("material-icons");
     }
     // ======================================================== SET & GET =================================================================
-    public Icon getIcon() {
+    public MaterialIcon getIcon() {
         return this.icon.get();
     }
-    public void setIcon(Icon icon) {
+    public void setIcon(MaterialIcon icon) {
         this.icon.set(icon);
         this.setText(String.valueOf(this.icon.get().getSymbol()));
     }
