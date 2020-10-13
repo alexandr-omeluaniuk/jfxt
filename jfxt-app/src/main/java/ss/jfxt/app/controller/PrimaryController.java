@@ -32,7 +32,7 @@ public class PrimaryController {
     }
     @FXML
     public void onMenu() {
-        Theme.getTheme().setPrimaryColor(Color.YELLOW);
+        Theme.getTheme().setPrimaryColor(Color.BROWN);
         Theme.getTheme().refresh(root);
     }
 }

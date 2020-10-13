@@ -85,10 +85,10 @@ public class Theme {
         }
     }
     private ObjectProperty<Color> getContrastColor(Color color){
-        float luminance = (float) (0.2126 * (color.getRed() * 2.2 / 255)
-                + 0.7152 * (color.getGreen() * 2.2 / 255)
-                + 0.0722 * (color.getBlue() * 2.2 / 255));
-        return luminance < 140 ? lightContrastColor : darkContrastColor;
+        float luminance = (float) (0.2126 * color.getRed()
+                + 0.7152 * color.getGreen()
+                + 0.0722 * color.getBlue()) * 100;
+        return luminance < 90 ? lightContrastColor : darkContrastColor;
     }
     /**
      * Apply contrast color.
