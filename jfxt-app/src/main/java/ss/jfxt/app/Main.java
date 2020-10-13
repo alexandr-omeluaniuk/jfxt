@@ -42,9 +42,8 @@ public class Main extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("fxml/primary.fxml"));
         Parent parent = fxmlLoader.load();
         Scene scene = new Scene(parent);
-        //scene.getStylesheets().setAll("style/global.css");
         stage.setScene(scene);
-        Theme.getTheme().refresh(parent);
+        Theme.getTheme().refresh(scene);
         stage.show();
     }
 }

@@ -4,6 +4,7 @@
 <?import ss.fx.material.component.Toolbar?>
 <?import ss.fx.material.component.Icon?>
 <?import ss.fx.material.component.IconButton?>
+<?import ss.fx.material.component.Typography?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" 
             prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" 
@@ -12,6 +13,7 @@
         <Toolbar color="PRIMARY">
             <leftSide>
                 <IconButton icon="MENU" onAction="#onMenu"/>
+                <Typography text="FX Demo" variant="H1"/>
             </leftSide>
             <rightSide>
                 <IconButton icon="CLOSE" onAction="#onClose"/>

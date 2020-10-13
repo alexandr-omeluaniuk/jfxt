@@ -11,6 +11,7 @@ import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.paint.Color;
 import ss.fx.material.api.ContrastColor;
 import ss.fx.material.api.PaletteColor;
@@ -49,8 +50,9 @@ public class Theme {
         node.styleProperty().bind(css.getReadOnlyProperty());
         return node;
     }
-    public void refresh(Parent root) {
-        walkNode(root, null);
+    public void refresh(Scene scene) {
+        scene.getStylesheets().add(getClass().getResource("/ss/fx/material/style/global.css").toExternalForm());
+        walkNode(scene.getRoot(), null);
     }
     /**
      * Get theme instance.
