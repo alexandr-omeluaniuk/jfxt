@@ -8,8 +8,8 @@ package ss.fx.material.component;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.value.ObservableValue;
-import ss.fx.material.api.ContrastColor;
-import ss.fx.material.api.PaletteColor;
+import javafx.scene.paint.Color;
+import ss.fx.material.api.ThemeComponent;
 import ss.fx.material.constants.Palette;
 import ss.fx.material.core.Theme;
 
@@ -17,7 +17,7 @@ import ss.fx.material.core.Theme;
  * Material button.
  * @author alex
  */
-public class Button extends javafx.scene.control.Button implements PaletteColor, ContrastColor {
+public class Button extends javafx.scene.control.Button implements ThemeComponent {
     /** Text. */
     private final ObjectProperty<String> label = new SimpleObjectProperty<>("");
     /** Color. */
@@ -29,6 +29,13 @@ public class Button extends javafx.scene.control.Button implements PaletteColor,
      */
     public Button() {
         init();
+    }
+
+    @Override
+    public void updateComponent() {
+        Color c = Theme.getTheme().getColor(this.color.get()).get();
+        Color cc = Theme.getTheme().getContrastColor(c).get();
+        this.setStyle("-fx-background-color: " + Theme.toRgba(c) + "; -fx-text-fill: " + Theme.toRgba(cc) + ";");
     }
     // ===================================================== CONFIGURATION ================================================================
     public static enum Variant {
@@ -46,7 +53,6 @@ public class Button extends javafx.scene.control.Button implements PaletteColor,
         this.variant.addListener((ObservableValue<? extends Variant> ov, Variant oldValue, Variant newValue) -> {
             
         });
-        Theme.getTheme().applyPaletteColor(this, this.color.get());
     }
     // ===================================================== SET & GET ====================================================================
     /**
@@ -61,11 +67,9 @@ public class Button extends javafx.scene.control.Button implements PaletteColor,
     public void setLabel(String label) {
         this.label.set(label);
     }
-    @Override
     public Palette getColor() {
         return this.color.get();
     }
-    @Override
     public void setColor(Palette color) {
         this.color.set(color);
     }

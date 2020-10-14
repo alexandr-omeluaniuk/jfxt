@@ -13,8 +13,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.paint.Color;
-import ss.fx.material.api.ContrastColor;
-import ss.fx.material.api.PaletteColor;
+import ss.fx.material.api.ThemeComponent;
 import ss.fx.material.constants.Palette;
 
 /**
@@ -72,7 +71,7 @@ public class Theme {
         this.primaryColor.set(base);
     }
     // ===================================================== PRIVATE ======================================================================
-    private String toRgba(Color color) {
+    public static String toRgba(Color color) {
         int r = (int) (255 * color.getRed());
         int g = (int) (255 * color.getGreen());
         int b = (int) (255 * color.getBlue());
@@ -84,7 +83,7 @@ public class Theme {
      * @param color palette color.
      * @return color property.
      */
-    private ObjectProperty<Color> getColor(Palette color) {
+    public ObjectProperty<Color> getColor(Palette color) {
         if (Palette.PRIMARY.equals(color)) {
             return primaryColor;
         } else {
@@ -96,7 +95,7 @@ public class Theme {
      * @param color target color.
      * @return contrast color.
      */
-    private ObjectProperty<Color> getContrastColor(Color color){
+    public ObjectProperty<Color> getContrastColor(Color color){
         float luminance = (float) (0.2126 * color.getRed()
                 + 0.7152 * color.getGreen()
                 + 0.0722 * color.getBlue()) * 100;
@@ -123,16 +122,19 @@ public class Theme {
      * @param paletteColor parent node palette color.
      */
     private void walkNode(Parent parent, Palette paletteColor) {
-        if (parent instanceof PaletteColor) {
-            paletteColor = ((PaletteColor) parent).getColor();
+        if (parent instanceof ThemeComponent) {
+            ((ThemeComponent) parent).updateComponent();
         }
-        if (parent instanceof ContrastColor) {
-            if (paletteColor != null) {
-                ObjectProperty<Color> colorProperty = getColor(paletteColor);
-                colorProperty = getContrastColor(colorProperty.get());
-                applyContrastColor(parent, colorProperty);
-            }
-        }
+//        if (parent instanceof PaletteColor) {
+//            paletteColor = ((PaletteColor) parent).getColor();
+//        }
+//        if (parent instanceof ContrastColor) {
+//            if (paletteColor != null) {
+//                ObjectProperty<Color> colorProperty = getColor(paletteColor);
+//                colorProperty = getContrastColor(colorProperty.get());
+//                applyContrastColor(parent, colorProperty);
+//            }
+//        }
         for (Node node : parent.getChildrenUnmodifiable()) {
             if (node instanceof Parent) {
                 walkNode((Parent) node, paletteColor);

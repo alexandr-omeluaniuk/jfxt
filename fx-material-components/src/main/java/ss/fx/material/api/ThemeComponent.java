@@ -10,5 +10,5 @@ package ss.fx.material.api;
  * @author alex
  */
 public interface ThemeComponent {
-    
+    void updateComponent();
 }
