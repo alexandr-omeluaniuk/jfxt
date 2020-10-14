@@ -1,0 +1,36 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Oct 14, 2020, 6:47:25 PM
+    Author     : alex
+*/
+
+.h1 {
+    -fx-font-size: 96px;
+}
+
+.h2 {
+    -fx-font-size: 60px;
+}
+
+.h3 {
+    -fx-font-size: 48px;
+}
+
+.h4 {
+    -fx-font-size: 34px;
+}
+
+.h5 {
+    -fx-font-size: 24px;
+}
+
+.h6 {
+    -fx-font-size: 20px;
+    -fx-font-weight: 500;
+    -fx-font-family: Roboto-Bold;
+    letter-spacing: 10px;
+}

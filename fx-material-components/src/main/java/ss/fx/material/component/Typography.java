@@ -19,38 +19,18 @@ public class Typography extends Label implements ContrastColor {
     private final ObjectProperty<Variant> variant = new SimpleObjectProperty<>(null);
     
     public Typography() {
-        this.styleProperty().addListener((ov, t, t1) -> {
-            System.out.println(ov);
-            System.out.println(t);
-            System.out.println(t1);
-        });
+        this.getStylesheets().add(getClass().getResource("mat-typography.css").toExternalFo‌​rm());
     }
     /**
      * Typography variant.
      */
     public static enum Variant {
-        H1("100"),
-        H2("3.75em"),
-        H3("3em"),
-        H4("2.125em"),
-        H5("1.5em"),
-        H6("1.25em");
-        /** Font size. */
-        private final String fontSize;
-        /**
-         * Constructor.
-         * @param fontSize font size.
-         */
-        private Variant(String fontSize) {
-            this.fontSize = fontSize;
-        }
-        /**
-         * Get variant font size.
-         * @return font size.
-         */
-        public String getFontSize() {
-            return fontSize;
-        }
+        H1,
+        H2,
+        H3,
+        H4,
+        H5,
+        H6;
     }
     // =========================================================== SET & GET ==============================================================
     /**
@@ -64,6 +44,6 @@ public class Typography extends Label implements ContrastColor {
      */
     public void setVariant(Variant variant) {
         this.variant.set(variant);
-        this.setStyle("-fx-font-size: " + variant.getFontSize() + ";");
+        this.getStyleClass().add(variant.name().toLowerCase());
     }
 }

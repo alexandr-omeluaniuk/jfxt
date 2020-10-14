@@ -13,7 +13,7 @@
         <Toolbar color="PRIMARY">
             <leftSide>
                 <IconButton icon="MENU" onAction="#onMenu"/>
-                <Typography text="FX Demo" variant="H1"/>
+                <Typography text="FX Demo" variant="H6"/>
             </leftSide>
             <rightSide>
                 <IconButton icon="CLOSE" onAction="#onClose"/>
