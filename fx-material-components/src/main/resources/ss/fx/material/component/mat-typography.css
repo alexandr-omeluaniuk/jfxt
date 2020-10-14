@@ -10,27 +10,36 @@ and open the template in the editor.
 
 .h1 {
     -fx-font-size: 96px;
+    -fx-font-weight: 300;
+    -fx-font-family: Roboto;
 }
 
 .h2 {
     -fx-font-size: 60px;
+    -fx-font-weight: 300;
+    -fx-font-family: Roboto;
 }
 
 .h3 {
     -fx-font-size: 48px;
+    -fx-font-weight: 400;
+    -fx-font-family: Roboto;
 }
 
 .h4 {
     -fx-font-size: 34px;
+    -fx-font-weight: 400;
+    -fx-font-family: Roboto;
 }
 
 .h5 {
     -fx-font-size: 24px;
+    -fx-font-weight: 400;
+    -fx-font-family: Roboto;
 }
 
 .h6 {
     -fx-font-size: 20px;
     -fx-font-weight: 500;
-    -fx-font-family: Roboto-Bold;
-    letter-spacing: 10px;
+    -fx-font-family: "Roboto Bold";
 }
