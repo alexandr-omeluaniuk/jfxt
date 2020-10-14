@@ -8,18 +8,10 @@ package ss.fx.material.api;
 import ss.fx.material.constants.Palette;
 
 /**
- * Has palette color property.
+ *
  * @author alex
  */
 public interface PaletteColor {
-    /**
-     * Get palette color.
-     * @return palette color.
-     */
-    public Palette getColor();
-    /**
-     * Set palette color.
-     * @param color palette color.
-     */
-    public void setColor(Palette color);
+    void setColor(Palette color);
+    Palette getColor();
 }

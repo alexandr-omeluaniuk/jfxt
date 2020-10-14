@@ -5,14 +5,11 @@
  */
 package ss.fx.material.core;
 
-import javafx.beans.binding.Bindings;
-import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.ReadOnlyStringWrapper;
-import javafx.beans.property.SimpleObjectProperty;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.paint.Color;
+import ss.fx.material.api.PaletteColor;
 import ss.fx.material.api.ThemeComponent;
 import ss.fx.material.constants.Palette;
 
@@ -21,57 +18,49 @@ import ss.fx.material.constants.Palette;
  * @author alex
  */
 public class Theme {
-    /** Theme. */
-    private static Theme theme = null;
     /** Primary color. */
-    private final ObjectProperty<Color> primaryColor = new SimpleObjectProperty<>(Color.web("#1976d2"));
+    private static Color primaryColor = Color.web("#1976d2");
     /** Secondary color. */
-    private final ObjectProperty<Color> secondaryColor = new SimpleObjectProperty<>(Color.web("#ff3ad5"));
-    /** Primary color. */
-    private final ObjectProperty<Color> lightContrastColor = new SimpleObjectProperty<>(Color.web("#ffffff"));
-    /** Secondary color. */
-    private final ObjectProperty<Color> darkContrastColor = new SimpleObjectProperty<>(Color.web("#000000"));
+    private static Color secondaryColor = Color.web("#ff3ad5");
+    /** Light contrast color. */
+    private static Color lightContrastColor = Color.web("#ffffff");
+    /** Dark contrast color. */
+    private static Color darkContrastColor = Color.web("#000000");
     /** Spacing unit. */
-    private final ObjectProperty<Integer> spacingUnit = new SimpleObjectProperty<>(8);
+    private static Short spacingUnit = 8;
     // ===================================================== PUBLIC =======================================================================
-    /**
-     * Apply background color.
-     * @param <T> node type.
-     * @param node node.
-     * @param color palette color.
-     * @return node.
-     */
-    public <T extends Parent> T applyPaletteColor(T node, Palette color) {
-        ObjectProperty<Color> colorProperty = getColor(color);
-        ReadOnlyStringWrapper css = new ReadOnlyStringWrapper();
-        css.bind(Bindings.createStringBinding(() -> String.format(
-            "-fx-background-color: %s; ", toRgba(colorProperty.get())), colorProperty));
-        node.styleProperty().bind(css.getReadOnlyProperty());
-        return node;
+    public static void initTheme(Scene scene) {
+        scene.getStylesheets().add(Theme.class.getResource("/ss/fx/material/style/global.css").toExternalForm());
+        refresh(scene);
     }
-    public void refresh(Scene scene) {
-        scene.getStylesheets().add(getClass().getResource("/ss/fx/material/style/global.css").toExternalForm());
+    public static void refresh(Scene scene) {
         walkNode(scene.getRoot(), null);
     }
-    /**
-     * Get theme instance.
-     * @return theme.
-     */
-    public synchronized static Theme getTheme() {
-        if (theme == null) {
-            theme = new Theme();
+    public static String hexColor(Palette color) {
+        return toRgba(getColor(color));
+    }
+    public static String hexContrastColor(Palette color) {
+        return toRgba(getContrastColor(getColor(color)));
+    }
+    public static Palette getParentPaletteColor(Parent node) {
+        Parent current = node.getParent();
+        while (current != null) {
+            if (current instanceof PaletteColor) {
+                return ((PaletteColor) current).getColor();
+            }
+            current = current.getParent();
         }
-        return theme;
+        return null;
     }
     // ===================================================== SET & GET ====================================================================
-    public final Color getPrimaryColor() {
-        return this.primaryColor.get();
+    public static Color getPrimaryColor() {
+        return primaryColor;
     }
-    public final void setPrimaryColor(Color base) {
-        this.primaryColor.set(base);
+    public static void setPrimaryColor(Color base) {
+        primaryColor = base;
     }
     // ===================================================== PRIVATE ======================================================================
-    public static String toRgba(Color color) {
+    private static String toRgba(Color color) {
         int r = (int) (255 * color.getRed());
         int g = (int) (255 * color.getGreen());
         int b = (int) (255 * color.getBlue());
@@ -83,7 +72,7 @@ public class Theme {
      * @param color palette color.
      * @return color property.
      */
-    public ObjectProperty<Color> getColor(Palette color) {
+    private static Color getColor(Palette color) {
         if (Palette.PRIMARY.equals(color)) {
             return primaryColor;
         } else {
@@ -95,46 +84,21 @@ public class Theme {
      * @param color target color.
      * @return contrast color.
      */
-    public ObjectProperty<Color> getContrastColor(Color color){
+    private static Color getContrastColor(Color color){
         float luminance = (float) (0.2126 * color.getRed()
                 + 0.7152 * color.getGreen()
                 + 0.0722 * color.getBlue()) * 100;
         return luminance < 90 ? lightContrastColor : darkContrastColor;
     }
     /**
-     * Apply contrast color.
-     * @param <T> node type.
-     * @param node node.
-     * @param color palette color.
-     * @return node.
-     */
-    private <T extends Parent> T applyContrastColor(T node, ObjectProperty<Color> colorProperty) {
-        final ObjectProperty<Color> colorPropertyFinal = colorProperty;
-        ReadOnlyStringWrapper css = new ReadOnlyStringWrapper();
-        css.bind(Bindings.createStringBinding(() -> String.format(
-             "-fx-text-fill: %s; ", toRgba(colorPropertyFinal.get())), colorPropertyFinal));
-        node.styleProperty().bind(css.getReadOnlyProperty());
-        return node;
-    }
-    /**
      * Walk nodes tree.
      * @param parent parent node.
      * @param paletteColor parent node palette color.
      */
-    private void walkNode(Parent parent, Palette paletteColor) {
+    private static void walkNode(Parent parent, Palette paletteColor) {
         if (parent instanceof ThemeComponent) {
             ((ThemeComponent) parent).updateComponent();
         }
-//        if (parent instanceof PaletteColor) {
-//            paletteColor = ((PaletteColor) parent).getColor();
-//        }
-//        if (parent instanceof ContrastColor) {
-//            if (paletteColor != null) {
-//                ObjectProperty<Color> colorProperty = getColor(paletteColor);
-//                colorProperty = getContrastColor(colorProperty.get());
-//                applyContrastColor(parent, colorProperty);
-//            }
-//        }
         for (Node node : parent.getChildrenUnmodifiable()) {
             if (node instanceof Parent) {
                 walkNode((Parent) node, paletteColor);

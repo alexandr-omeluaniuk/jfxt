@@ -8,18 +8,24 @@ package ss.fx.material.component;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.scene.control.Label;
-import ss.fx.material.api.ContrastColor;
+import ss.fx.material.api.ThemeComponent;
+import ss.fx.material.core.Theme;
 
 /**
  * Typography.
  * @author alex
  */
-public class Typography extends Label implements ContrastColor {
+public class Typography extends Label implements ThemeComponent {
     /** Variant. */
     private final ObjectProperty<Variant> variant = new SimpleObjectProperty<>(null);
     
     public Typography() {
         this.getStylesheets().add(getClass().getResource("mat-typography.css").toExternalFo‌​rm());
+    }
+
+    @Override
+    public void updateComponent() {
+        this.setStyle("-fx-text-fill: " + Theme.hexContrastColor(Theme.getParentPaletteColor(this)) + ";");
     }
     /**
      * Typography variant.

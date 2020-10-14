@@ -8,7 +8,6 @@ package ss.fx.material.component;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.value.ObservableValue;
-import javafx.scene.paint.Color;
 import ss.fx.material.api.ThemeComponent;
 import ss.fx.material.constants.Palette;
 import ss.fx.material.core.Theme;
@@ -30,12 +29,10 @@ public class Button extends javafx.scene.control.Button implements ThemeComponen
     public Button() {
         init();
     }
-
     @Override
     public void updateComponent() {
-        Color c = Theme.getTheme().getColor(this.color.get()).get();
-        Color cc = Theme.getTheme().getContrastColor(c).get();
-        this.setStyle("-fx-background-color: " + Theme.toRgba(c) + "; -fx-text-fill: " + Theme.toRgba(cc) + ";");
+        this.setStyle("-fx-background-color: " + Theme.hexColor(color.get())
+                + "; -fx-text-fill: " + Theme.hexContrastColor(color.get()) + ";");
     }
     // ===================================================== CONFIGURATION ================================================================
     public static enum Variant {
