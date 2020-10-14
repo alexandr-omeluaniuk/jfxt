@@ -46,7 +46,7 @@ public class Theme {
         ObjectProperty<Color> colorProperty = getColor(color);
         ReadOnlyStringWrapper css = new ReadOnlyStringWrapper();
         css.bind(Bindings.createStringBinding(() -> String.format(
-             "-fx-background-color: %s; ", toRgba(colorProperty.get())), colorProperty));
+            "-fx-background-color: %s; ", toRgba(colorProperty.get())), colorProperty));
         node.styleProperty().bind(css.getReadOnlyProperty());
         return node;
     }

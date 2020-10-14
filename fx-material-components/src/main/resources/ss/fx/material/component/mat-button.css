@@ -1,0 +1,18 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Oct 14, 2020, 8:18:47 PM
+    Author     : alex
+*/
+
+.button {
+    -fx-background-radius: 3px;
+    -fx-background-insets: 0px;
+    -fx-font-family: "Roboto-Bold";
+    -fx-font-weight: 500;
+    -fx-padding: 0.7em 0.5em;
+    -fx-font-size: 14px;
+}

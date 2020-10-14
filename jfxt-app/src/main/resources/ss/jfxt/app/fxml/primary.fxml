@@ -5,6 +5,7 @@
 <?import ss.fx.material.component.Icon?>
 <?import ss.fx.material.component.IconButton?>
 <?import ss.fx.material.component.Typography?>
+<?import ss.fx.material.component.Button?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" 
             prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" 
@@ -20,4 +21,7 @@
             </rightSide>
         </Toolbar>
     </top>
+    <center>
+        <Button label="Primary" color="PRIMARY"/>
+    </center>
 </BorderPane>
