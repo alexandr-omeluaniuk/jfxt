@@ -43,7 +43,7 @@ public class Toolbar extends BorderPane implements PaletteColor, ThemeComponent 
     }
     @Override
     public void updateComponent() {
-        this.setStyle("-fx-background-color: " + Theme.hexColor(color.get()) + ";");
+        this.setStyle("-fx-background-color: " + Theme.getPaletteColor(color.get()) + ";");
     }
     // ============================================================= SET & GET ============================================================
     public void setLeftSide(Node... nodes) {

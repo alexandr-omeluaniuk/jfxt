@@ -29,19 +29,44 @@ public class Theme {
     /** Spacing unit. */
     private static Short spacingUnit = 8;
     // ===================================================== PUBLIC =======================================================================
+    /**
+     * Init theme.
+     * Call this method before displaying a scene.
+     * @param scene scene instance. 
+     */
     public static void initTheme(Scene scene) {
         scene.getStylesheets().add(Theme.class.getResource("/ss/fx/material/style/global.css").toExternalForm());
         refresh(scene);
     }
+    /**
+     * Refresh theme.
+     * It uses after theme changes.
+     * @param scene scene instance.
+     */
     public static void refresh(Scene scene) {
         walkNode(scene.getRoot(), null);
     }
-    public static String hexColor(Palette color) {
+    /**
+     * Get palette color as RGBA.
+     * @param color palette color.
+     * @return RGBA value of palette color.
+     */
+    public static String getPaletteColor(Palette color) {
         return toRgba(getColor(color));
     }
-    public static String hexContrastColor(Palette color) {
+    /**
+     * Get contrast RGBA color (light or dark) for palette color.
+     * @param color palette color.
+     * @return color value as RGBA.
+     */
+    public static String getContrastPaletteColor(Palette color) {
         return toRgba(getContrastColor(getColor(color)));
     }
+    /**
+     * Get palette color of parent node.
+     * @param node current node.
+     * @return palette color or null.
+     */
     public static Palette getParentPaletteColor(Parent node) {
         Parent current = node.getParent();
         while (current != null) {
@@ -60,6 +85,11 @@ public class Theme {
         primaryColor = base;
     }
     // ===================================================== PRIVATE ======================================================================
+    /**
+     * Convert color to RGBA.
+     * @param color color.
+     * @return RGBA value.
+     */
     private static String toRgba(Color color) {
         int r = (int) (255 * color.getRed());
         int g = (int) (255 * color.getGreen());

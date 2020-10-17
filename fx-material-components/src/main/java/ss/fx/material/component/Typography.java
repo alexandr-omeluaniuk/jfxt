@@ -25,7 +25,7 @@ public class Typography extends Label implements ThemeComponent {
 
     @Override
     public void updateComponent() {
-        this.setStyle("-fx-text-fill: " + Theme.hexContrastColor(Theme.getParentPaletteColor(this)) + ";");
+        this.setStyle("-fx-text-fill: " + Theme.getContrastPaletteColor(Theme.getParentPaletteColor(this)) + ";");
     }
     /**
      * Typography variant.

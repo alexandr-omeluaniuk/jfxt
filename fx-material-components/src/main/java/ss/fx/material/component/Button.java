@@ -31,8 +31,8 @@ public class Button extends javafx.scene.control.Button implements ThemeComponen
     }
     @Override
     public void updateComponent() {
-        this.setStyle("-fx-background-color: " + Theme.hexColor(color.get())
-                + "; -fx-text-fill: " + Theme.hexContrastColor(color.get()) + ";");
+        this.setStyle("-fx-background-color: " + Theme.getPaletteColor(color.get())
+                + "; -fx-text-fill: " + Theme.getContrastPaletteColor(color.get()) + ";");
     }
     // ===================================================== CONFIGURATION ================================================================
     public static enum Variant {
