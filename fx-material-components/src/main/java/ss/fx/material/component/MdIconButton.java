@@ -7,26 +7,28 @@ package ss.fx.material.component;
 
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
-import javafx.scene.control.Label;
-import javafx.scene.text.Font;
+import javafx.scene.control.Button;
+import static ss.fx.material.component.MdIcon.font;
 import ss.fx.material.constants.MaterialIcon;
+import ss.fx.material.core.Theme;
 
 /**
- * Material icon.
+ * Icon button.
  * @author alex
  */
-public class Icon extends Label {
-    /** Icon font. */
-    protected static final Font font = Font.loadFont(Icon.class.getResourceAsStream("font/maticon.ttf"), 24);
+public class MdIconButton extends Button {
     /** Icon. */
     private final ObjectProperty<MaterialIcon> icon = new SimpleObjectProperty<>(null);
     /**
      * Constructor.
      */
-    public Icon() {
+    public MdIconButton() {
         this.setFont(font);
-        this.getStylesheets().add(getClass().getResource("mat-icon.css").toExternalFo‌​rm());
-        this.getStyleClass().add("material-icons");
+        this.getStylesheets().add(getClass().getResource("mat-icon-button.css").toExternalFo‌​rm());
+        this.getStyleClass().add("mat-icon-button");
+        Theme.subscribeThemeChanges(() -> {
+            this.setStyle("-fx-text-fill: " + Theme.getContrastPaletteColor(Theme.getParentPaletteColor(this)) + ";");
+        });
     }
     // ======================================================== SET & GET =================================================================
     public MaterialIcon getIcon() {

@@ -17,7 +17,7 @@ import ss.fx.material.skin.MDButtonSkin;
  * Material button.
  * @author alex
  */
-public class MDButton extends Button implements PaletteColor {
+public class MdButton extends Button implements PaletteColor {
     /** Text. */
     private final ObjectProperty<String> label = new SimpleObjectProperty<>("");
     /** Color. */
@@ -27,7 +27,7 @@ public class MDButton extends Button implements PaletteColor {
     /**
      * Constructor.
      */
-    public MDButton() {
+    public MdButton() {
         init();
     }
     // ===================================================== CONFIGURATION ================================================================

@@ -9,8 +9,8 @@ import javafx.animation.Transition;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.control.skin.ButtonSkin;
 import javafx.scene.input.MouseEvent;
-import ss.fx.material.component.MDButton;
-import ss.fx.material.component.MDButton.Variant;
+import ss.fx.material.component.MdButton;
+import ss.fx.material.component.MdButton.Variant;
 import ss.fx.material.constants.Palette;
 import ss.fx.material.core.Theme;
 
@@ -25,13 +25,13 @@ public class MDButtonSkin extends ButtonSkin {
      * Constructor.
      * @param button 
      */
-    public MDButtonSkin(MDButton button) {
+    public MDButtonSkin(MdButton button) {
         super(button);
         button.labelProperty().addListener((ObservableValue<? extends String> ov, String oldValue, String newValue) -> {
             button.setText(newValue.toUpperCase());
         });
-        button.variantProperty().addListener((ObservableValue<? extends MDButton.Variant> ov,
-                MDButton.Variant oldValue, MDButton.Variant newValue) -> {
+        button.variantProperty().addListener((ObservableValue<? extends MdButton.Variant> ov,
+                MdButton.Variant oldValue, MdButton.Variant newValue) -> {
             applyVariant(newValue, button);
         });
         button.colorProperty().addListener((ObservableValue<? extends Palette> ov, Palette oldValue, Palette newValue) -> {
@@ -53,7 +53,7 @@ public class MDButtonSkin extends ButtonSkin {
         }
     }
     
-    private void applyVariant(MDButton.Variant variant, MDButton button) {
+    private void applyVariant(MdButton.Variant variant, MdButton button) {
         button.getStyleClass().clear();
         button.getStyleClass().add("button");
         switch (variant) {
@@ -72,7 +72,7 @@ public class MDButtonSkin extends ButtonSkin {
         }
     }
     
-    public void applyColor(Palette paletteColor, MDButton button) {
+    public void applyColor(Palette paletteColor, MdButton button) {
         if (paletteColor != null) {
             Variant variant = button.variantProperty().get();
             switch (variant) {

@@ -3,42 +3,42 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-<?import ss.fx.material.component.Toolbar?>
-<?import ss.fx.material.component.Icon?>
-<?import ss.fx.material.component.IconButton?>
-<?import ss.fx.material.component.Typography?>
-<?import ss.fx.material.component.MDButton?>
+<?import ss.fx.material.component.MdToolbar?>
+<?import ss.fx.material.component.MdIcon?>
+<?import ss.fx.material.component.MdIconButton?>
+<?import ss.fx.material.component.MdTypography?>
+<?import ss.fx.material.component.MdButton?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" 
             prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" 
             fx:controller="ss.jfxt.app.controller.PrimaryController" fx:id="root">
     <top>
-        <Toolbar color="PRIMARY">
+        <MdToolbar color="PRIMARY">
             <leftSide>
-                <IconButton icon="MENU" onAction="#onMenu"/>
-                <Typography text="FX Demo" variant="H6"/>
+                <MdIconButton icon="MENU" onAction="#onMenu"/>
+                <MdTypography text="FX Demo" variant="H6"/>
             </leftSide>
             <rightSide>
-                <IconButton icon="CLOSE" onAction="#onClose"/>
+                <MdIconButton icon="CLOSE" onAction="#onClose"/>
             </rightSide>
-        </Toolbar>
+        </MdToolbar>
     </top>
     <center>
         <VBox spacing="20" style="-fx-padding: 20;">
             <HBox spacing="20" style="-fx-padding: 20;">
-                <MDButton label="Primary text" color="PRIMARY" variant="TEXT" />
-                <MDButton label="Primary contained" color="PRIMARY" variant="CONTAINED"/>
-                <MDButton label="Primary outlined" color="PRIMARY" variant="OUTLINED"/>
+                <MdButton label="Primary text" color="PRIMARY" variant="TEXT" />
+                <MdButton label="Primary contained" color="PRIMARY" variant="CONTAINED"/>
+                <MdButton label="Primary outlined" color="PRIMARY" variant="OUTLINED"/>
             </HBox>
             <HBox spacing="20" style="-fx-padding: 20;">
-                <MDButton label="Secondary text" color="SECONDARY" variant="TEXT"/>
-                <MDButton label="Secondary contained" color="SECONDARY" variant="CONTAINED"/>
-                <MDButton label="Secondary outlined" color="SECONDARY" variant="OUTLINED"/>
+                <MdButton label="Secondary text" color="SECONDARY" variant="TEXT"/>
+                <MdButton label="Secondary contained" color="SECONDARY" variant="CONTAINED"/>
+                <MdButton label="Secondary outlined" color="SECONDARY" variant="OUTLINED"/>
             </HBox>
             <HBox spacing="20" style="-fx-padding: 20;">
-                <MDButton label="Text" variant="TEXT"/>
-                <MDButton label="Contained" variant="CONTAINED"/>
-                <MDButton label="Outlined" variant="OUTLINED"/>
+                <MdButton label="Text" variant="TEXT"/>
+                <MdButton label="Contained" variant="CONTAINED"/>
+                <MdButton label="Outlined" variant="OUTLINED"/>
             </HBox>
         </VBox>
     </center>

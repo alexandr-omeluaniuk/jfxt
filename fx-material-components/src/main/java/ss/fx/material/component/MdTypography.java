@@ -14,11 +14,11 @@ import ss.fx.material.core.Theme;
  * Typography.
  * @author alex
  */
-public class Typography extends Label {
+public class MdTypography extends Label {
     /** Variant. */
     private final ObjectProperty<Variant> variant = new SimpleObjectProperty<>(null);
     
-    public Typography() {
+    public MdTypography() {
         this.getStylesheets().add(getClass().getResource("mat-typography.css").toExternalFo‌​rm());
         Theme.subscribeThemeChanges(() -> {
             this.setStyle("-fx-text-fill: " + Theme.getContrastPaletteColor(Theme.getParentPaletteColor(this)) + ";");
