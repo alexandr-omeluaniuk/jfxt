@@ -20,7 +20,7 @@ public class Button extends javafx.scene.control.Button implements ThemeComponen
     /** Text. */
     private final ObjectProperty<String> label = new SimpleObjectProperty<>("");
     /** Color. */
-    private final ObjectProperty<Palette> color = new SimpleObjectProperty<>(Palette.PRIMARY);
+    private final ObjectProperty<Palette> color = new SimpleObjectProperty<>(null);
     /** Variant. */
     private final ObjectProperty<Variant> variant = new SimpleObjectProperty<>(Variant.TEXT);
     /**
@@ -31,10 +31,24 @@ public class Button extends javafx.scene.control.Button implements ThemeComponen
     }
     @Override
     public void updateComponent() {
-        this.setStyle("-fx-background-color: " + Theme.getPaletteColor(color.get())
-                + "; -fx-text-fill: " + Theme.getContrastPaletteColor(color.get()) + ";");
+        switch (variant.get()) {
+            case TEXT:
+                this.setStyle("-fx-text-fill: " + Theme.getPaletteColor(color.get()) + ";");
+                break;
+            case CONTAINED:
+                this.setStyle("-fx-background-color: " + Theme.getPaletteColor(color.get())
+                        + "; -fx-text-fill: " + Theme.getContrastPaletteColor(color.get()) + ";");
+                break;
+            case OUTLINED:
+                break;
+            default:
+                break;
+        }
     }
     // ===================================================== CONFIGURATION ================================================================
+    /**
+     * Button variant.
+     */
     public static enum Variant {
         CONTAINED,
         OUTLINED,
@@ -43,24 +57,37 @@ public class Button extends javafx.scene.control.Button implements ThemeComponen
     // ===================================================== PRIVATE ======================================================================
     private void init() {
         this.getStylesheets().add(getClass().getResource("mat-button.css").toExternalFo‌​rm());
-        this.getStyleClass().add("button");
         this.label.addListener((ObservableValue<? extends String> ov, String oldValue, String newValue) -> {
             this.setText(newValue.toUpperCase());
         });
         this.variant.addListener((ObservableValue<? extends Variant> ov, Variant oldValue, Variant newValue) -> {
-            
+            applyVariant(newValue);
         });
+        applyVariant(this.variant.get());
+    }
+    // ===================================================== PRIVATE ======================================================================
+    
+    private void applyVariant(Variant variant) {
+        this.getStyleClass().clear();
+        this.getStyleClass().add("button");
+        switch (variant) {
+            case TEXT:
+                this.getStyleClass().add("text-button");
+                break;
+            case CONTAINED:
+                this.getStyleClass().add("contained-button");
+                break;
+            case OUTLINED:
+                this.getStyleClass().add("outlined-button");
+                break;
+            default:
+                break;
+        }
     }
     // ===================================================== SET & GET ====================================================================
-    /**
-     * @return the label
-     */
     public String getLabel() {
         return label.get();
     }
-    /**
-     * @param label the label to set
-     */
     public void setLabel(String label) {
         this.label.set(label);
     }
@@ -69,5 +96,11 @@ public class Button extends javafx.scene.control.Button implements ThemeComponen
     }
     public void setColor(Palette color) {
         this.color.set(color);
+    }
+    public Variant getVariant() {
+        return this.variant.get();
+    }
+    public void setVariant(Variant variant) {
+        this.variant.set(variant);
     }
 }

@@ -105,9 +105,10 @@ public class Theme {
     private static Color getColor(Palette color) {
         if (Palette.PRIMARY.equals(color)) {
             return primaryColor;
-        } else {
+        } else if (Palette.SECONDARY.equals(color)) {
             return secondaryColor;
         }
+        return null;
     }
     /**
      * Get contrast color for target color.

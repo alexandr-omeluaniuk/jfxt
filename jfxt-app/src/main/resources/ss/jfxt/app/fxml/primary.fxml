@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 <?import ss.fx.material.component.Toolbar?>
 <?import ss.fx.material.component.Icon?>
 <?import ss.fx.material.component.IconButton?>
@@ -22,6 +24,22 @@
         </Toolbar>
     </top>
     <center>
-        <Button label="Primary" color="PRIMARY"/>
+        <VBox spacing="20" style="-fx-padding: 20;">
+            <HBox spacing="20" style="-fx-padding: 20;">
+                <Button label="Primary text" color="PRIMARY" variant="TEXT"></Button>
+                <Button label="Primary contained" color="PRIMARY" variant="CONTAINED"></Button>
+                <Button label="Primary outlined" color="PRIMARY" variant="OUTLINED"></Button>
+            </HBox>
+            <HBox spacing="20" style="-fx-padding: 20;">
+                <Button label="Secondary text" color="SECONDARY" variant="TEXT"></Button>
+                <Button label="Secondary contained" color="SECONDARY" variant="CONTAINED"></Button>
+                <Button label="Secondary outlined" color="SECONDARY" variant="OUTLINED"></Button>
+            </HBox>
+            <HBox spacing="20" style="-fx-padding: 20;">
+                <Button label="Text" variant="TEXT"></Button>
+                <Button label="Contained" variant="CONTAINED"></Button>
+                <Button label="Outlined" variant="OUTLINED"></Button>
+            </HBox>
+        </VBox>
     </center>
 </BorderPane>

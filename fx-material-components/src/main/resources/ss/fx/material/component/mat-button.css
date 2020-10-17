@@ -9,10 +9,23 @@ and open the template in the editor.
 */
 
 .button {
-    -fx-background-radius: 3px;
+    -fx-background-radius: 4px;
     -fx-background-insets: 0px;
     -fx-font-family: "Roboto-Bold";
     -fx-font-weight: 500;
-    -fx-padding: 0.7em 0.5em;
+    -fx-padding: 6px 8px;
     -fx-font-size: 14px;
+    -fx-min-width: 64px;
+}
+
+.text-button {
+    -fx-background-color: transparent;
+}
+.text-button:hover {
+    -fx-background-color: rgba(0, 0, 0, 0.04);
+    -fx-cursor: hand;
+}
+
+.contained-button {
+    
 }
