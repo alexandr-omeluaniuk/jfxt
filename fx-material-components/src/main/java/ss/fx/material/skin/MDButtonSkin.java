@@ -18,7 +18,7 @@ import ss.fx.material.core.Theme;
  * Button skin.
  * @author alex
  */
-public class MDButtonSkin extends ButtonSkin {
+public final class MDButtonSkin extends ButtonSkin {
     /** Click animation. */
     private Transition clickAnimation;
     /**
@@ -27,9 +27,6 @@ public class MDButtonSkin extends ButtonSkin {
      */
     public MDButtonSkin(MdButton button) {
         super(button);
-        button.labelProperty().addListener((ObservableValue<? extends String> ov, String oldValue, String newValue) -> {
-            button.setText(newValue.toUpperCase());
-        });
         button.variantProperty().addListener((ObservableValue<? extends MdButton.Variant> ov,
                 MdButton.Variant oldValue, MdButton.Variant newValue) -> {
             applyVariant(newValue, button);
@@ -42,6 +39,7 @@ public class MDButtonSkin extends ButtonSkin {
         Theme.subscribeThemeChanges(() -> {
             applyColor(button.colorProperty().get(), button);
         });
+        applyColor(button.colorProperty().get(), button);
     }
     // ==================================================== PRIVATE =======================================================================
     private void startClickAnimation() {

@@ -18,8 +18,6 @@ import ss.fx.material.skin.MDButtonSkin;
  * @author alex
  */
 public class MdButton extends Button implements PaletteColor {
-    /** Text. */
-    private final ObjectProperty<String> label = new SimpleObjectProperty<>("");
     /** Color. */
     private final ObjectProperty<Palette> color = new SimpleObjectProperty<>(null);
     /** Variant. */
@@ -49,15 +47,6 @@ public class MdButton extends Button implements PaletteColor {
         return new MDButtonSkin(this);
     }
     // ===================================================== SET & GET ====================================================================
-    public ObjectProperty<String> labelProperty() {
-        return this.label;
-    }
-    public String getLabel() {
-        return label.get();
-    }
-    public void setLabel(String label) {
-        this.label.set(label);
-    }
     public ObjectProperty<Palette> colorProperty() {
         return this.color;
     }

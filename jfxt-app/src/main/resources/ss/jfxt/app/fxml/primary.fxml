@@ -26,19 +26,19 @@
     <center>
         <VBox spacing="20" style="-fx-padding: 20;">
             <HBox spacing="20" style="-fx-padding: 20;">
-                <MdButton label="Primary text" color="PRIMARY" variant="TEXT" />
-                <MdButton label="Primary contained" color="PRIMARY" variant="CONTAINED"/>
-                <MdButton label="Primary outlined" color="PRIMARY" variant="OUTLINED"/>
+                <MdButton color="PRIMARY" variant="TEXT" text="PRIMARY"/>
+                <MdButton color="PRIMARY" variant="CONTAINED" text="PRIMARY CONTAINED"/>
+                <MdButton color="PRIMARY" variant="OUTLINED" text="PRIMARY OUTLINED"/>
             </HBox>
             <HBox spacing="20" style="-fx-padding: 20;">
-                <MdButton label="Secondary text" color="SECONDARY" variant="TEXT"/>
-                <MdButton label="Secondary contained" color="SECONDARY" variant="CONTAINED"/>
-                <MdButton label="Secondary outlined" color="SECONDARY" variant="OUTLINED"/>
+                <MdButton color="SECONDARY" variant="TEXT" text="SECONDARY"/>
+                <MdButton color="SECONDARY" variant="CONTAINED" text="SECONDARY CONTAINED"/>
+                <MdButton color="SECONDARY" variant="OUTLINED" text="SECONDARY OUTLINED"/>
             </HBox>
             <HBox spacing="20" style="-fx-padding: 20;">
-                <MdButton label="Text" variant="TEXT"/>
-                <MdButton label="Contained" variant="CONTAINED"/>
-                <MdButton label="Outlined" variant="OUTLINED"/>
+                <MdButton variant="TEXT" text="DEFAULT"/>
+                <MdButton variant="CONTAINED" text="DEFAULT CONTAINED"/>
+                <MdButton variant="OUTLINED" text="DEFAULT OUTLINED"/>
             </HBox>
         </VBox>
     </center>
