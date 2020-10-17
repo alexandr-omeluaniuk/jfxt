@@ -31,19 +31,7 @@ public class Button extends javafx.scene.control.Button implements ThemeComponen
     }
     @Override
     public void updateComponent() {
-        switch (variant.get()) {
-            case TEXT:
-                this.setStyle("-fx-text-fill: " + Theme.getPaletteColor(color.get()) + ";");
-                break;
-            case CONTAINED:
-                this.setStyle("-fx-background-color: " + Theme.getPaletteColor(color.get())
-                        + "; -fx-text-fill: " + Theme.getContrastPaletteColor(color.get()) + ";");
-                break;
-            case OUTLINED:
-                break;
-            default:
-                break;
-        }
+        applyColor(color.get());
     }
     // ===================================================== CONFIGURATION ================================================================
     /**
@@ -63,6 +51,9 @@ public class Button extends javafx.scene.control.Button implements ThemeComponen
         this.variant.addListener((ObservableValue<? extends Variant> ov, Variant oldValue, Variant newValue) -> {
             applyVariant(newValue);
         });
+        this.color.addListener((ObservableValue<? extends Palette> ov, Palette oldValue, Palette newValue) -> {
+            applyColor(newValue);
+        });
         applyVariant(this.variant.get());
     }
     // ===================================================== PRIVATE ======================================================================
@@ -79,6 +70,23 @@ public class Button extends javafx.scene.control.Button implements ThemeComponen
                 break;
             case OUTLINED:
                 this.getStyleClass().add("outlined-button");
+                break;
+            default:
+                break;
+        }
+    }
+    
+    private void applyColor(Palette paletteColor) {
+        switch (variant.get()) {
+            case TEXT:
+                this.setStyle("-fx-text-fill: " + Theme.getPaletteColor(paletteColor) + ";");
+                break;
+            case CONTAINED:
+                this.setStyle("-fx-background-color: " + Theme.getPaletteColor(paletteColor)
+                        + "; -fx-text-fill: " + Theme.getContrastPaletteColor(paletteColor) + ";");
+                break;
+            case OUTLINED:
+                this.setStyle("-fx-text-fill: " + Theme.getPaletteColor(paletteColor) + ";");
                 break;
             default:
                 break;
