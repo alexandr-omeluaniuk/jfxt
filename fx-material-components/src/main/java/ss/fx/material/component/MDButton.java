@@ -8,6 +8,8 @@ package ss.fx.material.component;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.value.ObservableValue;
+import javafx.scene.control.Skin;
+import javafx.scene.control.skin.ButtonSkin;
 import ss.fx.material.api.ThemeComponent;
 import ss.fx.material.constants.Palette;
 import ss.fx.material.core.Theme;
@@ -16,7 +18,7 @@ import ss.fx.material.core.Theme;
  * Material button.
  * @author alex
  */
-public class Button extends javafx.scene.control.Button implements ThemeComponent {
+public class MDButton extends javafx.scene.control.Button implements ThemeComponent {
     /** Text. */
     private final ObjectProperty<String> label = new SimpleObjectProperty<>("");
     /** Color. */
@@ -26,7 +28,7 @@ public class Button extends javafx.scene.control.Button implements ThemeComponen
     /**
      * Constructor.
      */
-    public Button() {
+    public MDButton() {
         init();
     }
     @Override
@@ -57,6 +59,10 @@ public class Button extends javafx.scene.control.Button implements ThemeComponen
         applyVariant(this.variant.get());
     }
     // ===================================================== PRIVATE ======================================================================
+    @Override
+    protected Skin<?> createDefaultSkin() {
+        return new ButtonSkin(this);
+    }
     
     private void applyVariant(Variant variant) {
         this.getStyleClass().clear();

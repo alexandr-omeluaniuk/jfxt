@@ -7,7 +7,7 @@
 <?import ss.fx.material.component.Icon?>
 <?import ss.fx.material.component.IconButton?>
 <?import ss.fx.material.component.Typography?>
-<?import ss.fx.material.component.Button?>
+<?import ss.fx.material.component.MDButton?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" 
             prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" 
@@ -26,19 +26,19 @@
     <center>
         <VBox spacing="20" style="-fx-padding: 20;">
             <HBox spacing="20" style="-fx-padding: 20;">
-                <Button label="Primary text" color="PRIMARY" variant="TEXT"></Button>
-                <Button label="Primary contained" color="PRIMARY" variant="CONTAINED"></Button>
-                <Button label="Primary outlined" color="PRIMARY" variant="OUTLINED"></Button>
+                <MDButton label="Primary text" color="PRIMARY" variant="TEXT" />
+                <MDButton label="Primary contained" color="PRIMARY" variant="CONTAINED"/>
+                <MDButton label="Primary outlined" color="PRIMARY" variant="OUTLINED"/>
             </HBox>
             <HBox spacing="20" style="-fx-padding: 20;">
-                <Button label="Secondary text" color="SECONDARY" variant="TEXT"></Button>
-                <Button label="Secondary contained" color="SECONDARY" variant="CONTAINED"></Button>
-                <Button label="Secondary outlined" color="SECONDARY" variant="OUTLINED"></Button>
+                <MDButton label="Secondary text" color="SECONDARY" variant="TEXT"/>
+                <MDButton label="Secondary contained" color="SECONDARY" variant="CONTAINED"/>
+                <MDButton label="Secondary outlined" color="SECONDARY" variant="OUTLINED"/>
             </HBox>
             <HBox spacing="20" style="-fx-padding: 20;">
-                <Button label="Text" variant="TEXT"></Button>
-                <Button label="Contained" variant="CONTAINED"></Button>
-                <Button label="Outlined" variant="OUTLINED"></Button>
+                <MDButton label="Text" variant="TEXT"/>
+                <MDButton label="Contained" variant="CONTAINED"/>
+                <MDButton label="Outlined" variant="OUTLINED"/>
             </HBox>
         </VBox>
     </center>
