@@ -67,6 +67,7 @@ public class Button extends javafx.scene.control.Button implements ThemeComponen
                 break;
             case CONTAINED:
                 this.getStyleClass().add("contained-button");
+                Theme.elevation(1, this);
                 break;
             case OUTLINED:
                 this.getStyleClass().add("outlined-button");

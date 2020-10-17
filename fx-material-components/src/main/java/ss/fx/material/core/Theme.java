@@ -8,6 +8,8 @@ package ss.fx.material.core;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.effect.BlurType;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.paint.Color;
 import ss.fx.material.api.PaletteColor;
 import ss.fx.material.api.ThemeComponent;
@@ -17,7 +19,7 @@ import ss.fx.material.constants.Palette;
  * Material theme.
  * @author alex
  */
-public class Theme {
+public class Theme {    
     /** Primary color. */
     private static Color primaryColor = Color.web("#1976d2");
     /** Secondary color. */
@@ -28,6 +30,15 @@ public class Theme {
     private static Color darkContrastColor = Color.web("#000000");
     /** Spacing unit. */
     private static Short spacingUnit = 8;
+    /** Shadows. */
+    private static DropShadow[] shadows = new DropShadow[] {
+        new DropShadow(BlurType.GAUSSIAN, Color.rgb(0, 0, 0, 0), 0, 0, 0, 0),
+        new DropShadow(BlurType.GAUSSIAN, Color.rgb(0, 0, 0, 0.26), 10, 0.12, -1, 2),
+        new DropShadow(BlurType.GAUSSIAN, Color.rgb(0, 0, 0, 0.26), 15, 0.16, 0, 4),
+        new DropShadow(BlurType.GAUSSIAN, Color.rgb(0, 0, 0, 0.26), 20, 0.19, 0, 6),
+        new DropShadow(BlurType.GAUSSIAN, Color.rgb(0, 0, 0, 0.26), 25, 0.25, 0, 8),
+        new DropShadow(BlurType.GAUSSIAN, Color.rgb(0, 0, 0, 0.26), 30, 0.30, 0, 10)
+    };
     // ===================================================== PUBLIC =======================================================================
     /**
      * Init theme.
@@ -76,6 +87,12 @@ public class Theme {
             current = current.getParent();
         }
         return null;
+    }
+    
+    public static void elevation(int elevation, Parent node) {
+        if (elevation < shadows.length) {
+            node.setEffect(shadows[elevation]);
+        }
     }
     // ===================================================== SET & GET ====================================================================
     public static Color getPrimaryColor() {
