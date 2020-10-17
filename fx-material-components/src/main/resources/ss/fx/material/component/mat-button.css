@@ -10,6 +10,7 @@ and open the template in the editor.
 
 .button {
     -fx-background-radius: 4px;
+    -fx-border-radius: 4px;
     -fx-background-insets: 0px;
     -fx-font-family: "Roboto";
     -fx-font-weight: 700;
@@ -29,4 +30,17 @@ and open the template in the editor.
 
 .contained-button {
     -fx-background-color: #e0e0e0;
+    -fx-padding: 6px 16px;
+}
+
+.contained-button:hover {
+    -fx-cursor: hand;
+}
+
+.outlined-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: rgba(0, 0, 0, 0.87);
+    -fx-border-color: rgba(0, 0, 0, 0.87);
+    -fx-border-width: 1px;
+    -fx-padding: 5px 15px;
 }

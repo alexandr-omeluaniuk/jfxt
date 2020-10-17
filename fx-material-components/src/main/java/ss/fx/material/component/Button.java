@@ -88,7 +88,8 @@ public class Button extends javafx.scene.control.Button implements ThemeComponen
                             + "; -fx-text-fill: " + Theme.getContrastPaletteColor(paletteColor) + ";");
                     break;
                 case OUTLINED:
-                    this.setStyle("-fx-text-fill: " + Theme.getPaletteColor(paletteColor) + ";");
+                    this.setStyle("-fx-border-color: " + Theme.getPaletteColor(paletteColor) + ";"
+                            + "-fx-text-fill: " + Theme.getPaletteColor(paletteColor) + ";");
                     break;
                 default:
                     break;

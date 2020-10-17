@@ -31,7 +31,7 @@ public class Theme {
     /** Spacing unit. */
     private static Short spacingUnit = 8;
     /** Shadows. */
-    private static DropShadow[] shadows = new DropShadow[] {
+    private static final DropShadow[] shadows = new DropShadow[] {
         new DropShadow(BlurType.GAUSSIAN, Color.rgb(0, 0, 0, 0), 0, 0, 0, 0),
         new DropShadow(BlurType.GAUSSIAN, Color.rgb(0, 0, 0, 0.26), 10, 0.12, -1, 2),
         new DropShadow(BlurType.GAUSSIAN, Color.rgb(0, 0, 0, 0.26), 15, 0.16, 0, 4),
