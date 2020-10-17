@@ -13,7 +13,6 @@ import javafx.scene.Node;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import ss.fx.material.api.PaletteColor;
-import ss.fx.material.api.ThemeComponent;
 import ss.fx.material.constants.Palette;
 import ss.fx.material.core.Theme;
 
@@ -21,7 +20,7 @@ import ss.fx.material.core.Theme;
  * Material toolbar.
  * @author alex
  */
-public class Toolbar extends BorderPane implements PaletteColor, ThemeComponent {
+public class Toolbar extends BorderPane implements PaletteColor {
     /** Toolbar left side */
     private final HBox leftSide = new HBox();
     /** Toolbar right side. */
@@ -40,10 +39,9 @@ public class Toolbar extends BorderPane implements PaletteColor, ThemeComponent 
         this.setRight(rightSide);
         rightSide.setPickOnBounds(false);
         rightSide.setAlignment(Pos.CENTER_RIGHT);
-    }
-    @Override
-    public void updateComponent() {
-        this.setStyle("-fx-background-color: " + Theme.getPaletteColor(color.get()) + ";");
+        Theme.subscribeThemeChanges(() -> {
+            this.setStyle("-fx-background-color: " + Theme.getPaletteColor(color.get()) + ";");
+        });
     }
     // ============================================================= SET & GET ============================================================
     public void setLeftSide(Node... nodes) {

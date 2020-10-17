@@ -5,7 +5,8 @@
  */
 package ss.fx.material.core;
 
-import javafx.scene.Node;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.value.ObservableValue;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.effect.BlurType;
@@ -19,7 +20,9 @@ import ss.fx.material.constants.Palette;
  * Material theme.
  * @author alex
  */
-public class Theme {    
+public class Theme {
+    /** Theme change flag. */
+    private static final SimpleObjectProperty<Long> THEME_CHANGED = new SimpleObjectProperty<>();
     /** Primary color. */
     private static Color primaryColor = Color.web("#1976d2");
     /** Secondary color. */
@@ -55,7 +58,7 @@ public class Theme {
      * @param scene scene instance.
      */
     public static void refresh(Scene scene) {
-        walkNode(scene.getRoot(), null);
+        THEME_CHANGED.set(System.currentTimeMillis());
     }
     /**
      * Get palette color as RGBA.
@@ -93,6 +96,12 @@ public class Theme {
         if (elevation < shadows.length) {
             node.setEffect(shadows[elevation]);
         }
+    }
+    
+    public static void subscribeThemeChanges(ThemeComponent component) {
+        THEME_CHANGED.addListener((ObservableValue<? extends Long> ov, Long t, Long t1) -> {
+            component.updateComponent();
+        });
     }
     // ===================================================== SET & GET ====================================================================
     public static Color getPrimaryColor() {
@@ -137,20 +146,5 @@ public class Theme {
                 + 0.7152 * color.getGreen()
                 + 0.0722 * color.getBlue()) * 100;
         return luminance < 90 ? lightContrastColor : darkContrastColor;
-    }
-    /**
-     * Walk nodes tree.
-     * @param parent parent node.
-     * @param paletteColor parent node palette color.
-     */
-    private static void walkNode(Parent parent, Palette paletteColor) {
-        if (parent instanceof ThemeComponent) {
-            ((ThemeComponent) parent).updateComponent();
-        }
-        for (Node node : parent.getChildrenUnmodifiable()) {
-            if (node instanceof Parent) {
-                walkNode((Parent) node, paletteColor);
-            }
-        }
     }
 }
