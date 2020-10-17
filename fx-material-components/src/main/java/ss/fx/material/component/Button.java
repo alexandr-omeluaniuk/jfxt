@@ -77,19 +77,21 @@ public class Button extends javafx.scene.control.Button implements ThemeComponen
     }
     
     private void applyColor(Palette paletteColor) {
-        switch (variant.get()) {
-            case TEXT:
-                this.setStyle("-fx-text-fill: " + Theme.getPaletteColor(paletteColor) + ";");
-                break;
-            case CONTAINED:
-                this.setStyle("-fx-background-color: " + Theme.getPaletteColor(paletteColor)
-                        + "; -fx-text-fill: " + Theme.getContrastPaletteColor(paletteColor) + ";");
-                break;
-            case OUTLINED:
-                this.setStyle("-fx-text-fill: " + Theme.getPaletteColor(paletteColor) + ";");
-                break;
-            default:
-                break;
+        if (paletteColor != null) {
+            switch (variant.get()) {
+                case TEXT:
+                    this.setStyle("-fx-text-fill: " + Theme.getPaletteColor(paletteColor) + ";");
+                    break;
+                case CONTAINED:
+                    this.setStyle("-fx-background-color: " + Theme.getPaletteColor(paletteColor)
+                            + "; -fx-text-fill: " + Theme.getContrastPaletteColor(paletteColor) + ";");
+                    break;
+                case OUTLINED:
+                    this.setStyle("-fx-text-fill: " + Theme.getPaletteColor(paletteColor) + ";");
+                    break;
+                default:
+                    break;
+            }
         }
     }
     // ===================================================== SET & GET ====================================================================
