@@ -9,8 +9,7 @@ and open the template in the editor.
 */
 
 .button {
-    -fx-background-radius: 4px;
-    -fx-border-radius: 4px;
+    -fx-border-radius: 3px;
     -fx-background-insets: 0px;
     -fx-font-family: "Roboto";
     -fx-font-weight: 700;
@@ -24,7 +23,6 @@ and open the template in the editor.
     -fx-text-fill: rgba(0, 0, 0, 0.87);
 }
 .text-button:hover {
-    -fx-background-color: rgba(0, 0, 0, 0.04);
     -fx-cursor: hand;
 }
 

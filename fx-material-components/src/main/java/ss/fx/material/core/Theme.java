@@ -76,6 +76,25 @@ public class Theme {
     public static String getContrastPaletteColor(Palette color) {
         return toRgba(getContrastColor(getColor(color)));
     }
+    
+    public static String getColorWithOffset(Palette color, double offset) {
+        Color c = getColor(color);
+        int red = (int) (255 * c.getRed() * offset);
+        int green = (int) (255 * c.getGreen() * offset);
+        int blue = (int) (255 * c.getBlue() * offset);
+        red = red > 255 ? 255 : red;
+        green = green > 255 ? 255 : green;
+        blue = blue > 255 ? 255 : blue;
+        return toRgba(Color.rgb(red, green, blue));
+    }
+    
+    public static String getColorWithAlpha(Palette color, double alpha) {
+        Color c = getColor(color);
+        int red = (int) (255 * c.getRed());
+        int green = (int) (255 * c.getGreen());
+        int blue = (int) (255 * c.getBlue());
+        return toRgba(Color.rgb(red, green, blue, alpha));
+    }
     /**
      * Get palette color of parent node.
      * @param node current node.

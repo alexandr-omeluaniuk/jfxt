@@ -29,6 +29,8 @@ public final class MDButtonSkin extends ButtonSkin {
     private Transition clickAnimation;
     
     private boolean mousePressed = false;
+    
+    private boolean hover = false;
     /**
      * Constructor.
      * @param button 
@@ -56,6 +58,10 @@ public final class MDButtonSkin extends ButtonSkin {
                 playClickAnimation(-1);
             }
         });
+        button.hoverProperty().addListener((ObservableValue<? extends Boolean> ov, Boolean oldValue, Boolean newValue) -> {
+            hover = newValue;
+            applyColor(button.colorProperty().get(), button);
+        });
         Theme.subscribeThemeChanges(() -> {
             applyColor(button.colorProperty().get(), button);
         });
@@ -78,7 +84,9 @@ public final class MDButtonSkin extends ButtonSkin {
                 break;
             case CONTAINED:
                 Theme.elevation(1, button);
-                clickAnimation = new ButtonClickTransition((DropShadow) button.getEffect());
+                if (clickAnimation == null) {
+                    clickAnimation = new ButtonClickTransition((DropShadow) button.getEffect());
+                }
                 button.getStyleClass().add("contained-button");
                 break;
             case OUTLINED:
@@ -94,15 +102,18 @@ public final class MDButtonSkin extends ButtonSkin {
             Variant variant = button.variantProperty().get();
             switch (variant) {
                 case TEXT:
-                    button.setStyle("-fx-text-fill: " + Theme.getPaletteColor(paletteColor) + ";");
+                    button.setStyle("-fx-text-fill: " + Theme.getPaletteColor(paletteColor) + ";"
+                            + "-fx-background-color: " + (hover ? Theme.getColorWithAlpha(paletteColor, 0.04) : "transparent") + ";");
                     break;
                 case CONTAINED:
-                    button.setStyle("-fx-background-color: " + Theme.getPaletteColor(paletteColor)
+                    button.setStyle("-fx-background-color: "
+                            + (hover ? Theme.getColorWithOffset(paletteColor, 0.8) : Theme.getPaletteColor(paletteColor))
                             + "; -fx-text-fill: " + Theme.getContrastPaletteColor(paletteColor) + ";");
                     break;
                 case OUTLINED:
                     button.setStyle("-fx-border-color: " + Theme.getPaletteColor(paletteColor) + ";"
-                            + "-fx-text-fill: " + Theme.getPaletteColor(paletteColor) + ";");
+                            + "-fx-text-fill: " + Theme.getPaletteColor(paletteColor) + ";"
+                            + "-fx-background-color: " + (hover ? Theme.getColorWithAlpha(paletteColor, 0.04) : "transparent") + ";");
                     break;
                 default:
                     break;
@@ -141,7 +152,6 @@ public final class MDButtonSkin extends ButtonSkin {
         
         @Override
         protected void interpolate(double d) {
-            //System.out.println(d);
             timeline.playFrom(Duration.seconds(d));
             timeline.stop();
         }
