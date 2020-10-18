@@ -70,7 +70,7 @@ public final class MDButtonSkin extends ButtonSkin {
         }
     }
     
-    public void applyColor(Palette paletteColor, MdButton button) {
+    private void applyColor(Palette paletteColor, MdButton button) {
         if (paletteColor != null) {
             Variant variant = button.variantProperty().get();
             switch (variant) {
@@ -90,4 +90,6 @@ public final class MDButtonSkin extends ButtonSkin {
             }
         }
     }
+    // ====================================================== INNER CLASSES ===============================================================
+    
 }
