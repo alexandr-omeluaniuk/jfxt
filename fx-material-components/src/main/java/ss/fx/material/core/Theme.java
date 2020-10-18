@@ -98,6 +98,13 @@ public class Theme {
         }
     }
     
+    public static DropShadow getShadow(int elevation) {
+        if (elevation < shadows.length) {
+            return shadows[elevation];
+        }
+        return null;
+    }
+    
     public static void subscribeThemeChanges(ThemeComponent component) {
         THEME_CHANGED.addListener((ObservableValue<? extends Long> ov, Long t, Long t1) -> {
             component.updateComponent();

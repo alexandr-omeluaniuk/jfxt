@@ -5,10 +5,16 @@
  */
 package ss.fx.material.skin;
 
+import javafx.animation.Interpolator;
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
 import javafx.animation.Transition;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.control.skin.ButtonSkin;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.input.MouseEvent;
+import javafx.util.Duration;
 import ss.fx.material.component.MdButton;
 import ss.fx.material.component.MdButton.Variant;
 import ss.fx.material.constants.Palette;
@@ -35,19 +41,20 @@ public final class MDButtonSkin extends ButtonSkin {
             applyColor(newValue, button);
         });
         applyVariant(button.variantProperty().get(), button);
-        button.addEventHandler(MouseEvent.MOUSE_PRESSED, e -> startClickAnimation());
+        button.addEventHandler(MouseEvent.MOUSE_PRESSED, e -> playClickAnimation(1));
+        button.armedProperty().addListener((o, oldVal, newVal) -> {
+            playClickAnimation(-1);
+        });
         Theme.subscribeThemeChanges(() -> {
             applyColor(button.colorProperty().get(), button);
         });
         applyColor(button.colorProperty().get(), button);
     }
     // ==================================================== PRIVATE =======================================================================
-    private void startClickAnimation() {
+    private void playClickAnimation(double rate) {
         if (clickAnimation != null) {
-//            if (!clickedAnimation.getCurrentTime().equals(clickedAnimation.getCycleDuration()) || rate != 1) {
-//                clickedAnimation.setRate(rate);
-//                clickedAnimation.play();
-//            }
+            clickAnimation.setRate(rate);
+            clickAnimation.play();
         }
     }
     
@@ -59,8 +66,9 @@ public final class MDButtonSkin extends ButtonSkin {
                 button.getStyleClass().add("text-button");
                 break;
             case CONTAINED:
-                button.getStyleClass().add("contained-button");
                 Theme.elevation(1, button);
+                clickAnimation = new ButtonClickTransition((DropShadow) button.getEffect());
+                button.getStyleClass().add("contained-button");
                 break;
             case OUTLINED:
                 button.getStyleClass().add("outlined-button");
@@ -92,4 +100,39 @@ public final class MDButtonSkin extends ButtonSkin {
     }
     // ====================================================== INNER CLASSES ===============================================================
     
+    private class ButtonClickTransition extends Transition {
+        
+        private final Timeline timeline;
+        
+        public ButtonClickTransition(DropShadow buttonShadow) {
+            timeline = new Timeline();
+            Interpolator interpolation = Interpolator.EASE_BOTH;
+            timeline.getKeyFrames().add(
+                    new KeyFrame(Duration.ZERO,
+                            new KeyValue(buttonShadow.radiusProperty(), Theme.getShadow(1).radiusProperty().get(), interpolation),
+                            new KeyValue(buttonShadow.spreadProperty(), Theme.getShadow(1).spreadProperty().get(), interpolation),
+                            new KeyValue(buttonShadow.offsetXProperty(), Theme.getShadow(1).offsetXProperty().get(), interpolation),
+                            new KeyValue(buttonShadow.offsetYProperty(), Theme.getShadow(1).offsetYProperty().get(), interpolation)
+                    )
+            );
+            // end keyframe
+            timeline.getKeyFrames().add(
+                    new KeyFrame(Duration.millis(1000),
+                            new KeyValue(buttonShadow.radiusProperty(), Theme.getShadow(3).radiusProperty().get(), interpolation),
+                            new KeyValue(buttonShadow.spreadProperty(), Theme.getShadow(3).spreadProperty().get(), interpolation),
+                            new KeyValue(buttonShadow.offsetXProperty(), Theme.getShadow(3).offsetXProperty().get(), interpolation),
+                            new KeyValue(buttonShadow.offsetYProperty(), Theme.getShadow(3).offsetYProperty().get(), interpolation)
+                    )
+            );
+            setCycleDuration(Duration.seconds(0.2));
+            setDelay(Duration.seconds(0));
+        }
+        
+        @Override
+        protected void interpolate(double d) {
+            System.out.println(d);
+            timeline.playFrom(Duration.seconds(d));
+            timeline.stop();
+        }
+    }
 }

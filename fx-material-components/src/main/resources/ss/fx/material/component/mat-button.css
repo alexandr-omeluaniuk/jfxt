@@ -44,3 +44,7 @@ and open the template in the editor.
     -fx-border-width: 1px;
     -fx-padding: 5px 15px;
 }
+
+.outlined-button:hover {
+    -fx-cursor: hand;
+}
