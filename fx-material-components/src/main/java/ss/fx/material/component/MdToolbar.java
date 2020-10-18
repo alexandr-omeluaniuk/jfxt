@@ -42,6 +42,7 @@ public class MdToolbar extends BorderPane implements PaletteColor {
         Theme.subscribeThemeChanges(() -> {
             this.setStyle("-fx-background-color: " + Theme.getPaletteColor(color.get()) + ";");
         });
+        Theme.elevation(2, this);
     }
     // ============================================================= SET & GET ============================================================
     public void setLeftSide(Node... nodes) {

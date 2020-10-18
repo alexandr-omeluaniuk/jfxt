@@ -37,11 +37,11 @@ public class Main extends Application {
         Rectangle2D bounds = screen.getVisualBounds();
         stage.setX(bounds.getMinX());
         stage.setY(bounds.getMinY());
-        stage.setWidth(bounds.getWidth());
-        stage.setHeight(bounds.getHeight());
+//        stage.setWidth(bounds.getWidth());
+//        stage.setHeight(bounds.getHeight());
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("fxml/primary.fxml"));
         Parent parent = fxmlLoader.load();
-        Scene scene = new Scene(parent);
+        Scene scene = new Scene(parent, 800, 600);
         stage.setScene(scene);
         Theme.initTheme(scene);
         stage.show();

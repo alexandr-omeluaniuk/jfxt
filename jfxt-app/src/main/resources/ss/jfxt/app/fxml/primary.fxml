@@ -9,8 +9,8 @@
 <?import ss.fx.material.component.MdTypography?>
 <?import ss.fx.material.component.MdButton?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" 
-            prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" 
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" 
+            xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" 
             fx:controller="ss.jfxt.app.controller.PrimaryController" fx:id="root">
     <top>
         <MdToolbar color="PRIMARY">

@@ -27,6 +27,8 @@ import ss.fx.material.core.Theme;
 public final class MDButtonSkin extends ButtonSkin {
     /** Click animation. */
     private Transition clickAnimation;
+    
+    private boolean mousePressed = false;
     /**
      * Constructor.
      * @param button 
@@ -42,8 +44,17 @@ public final class MDButtonSkin extends ButtonSkin {
         });
         applyVariant(button.variantProperty().get(), button);
         button.addEventHandler(MouseEvent.MOUSE_PRESSED, e -> playClickAnimation(1));
+        button.addEventFilter(MouseEvent.MOUSE_PRESSED, e -> mousePressed = true);
+        button.addEventFilter(MouseEvent.MOUSE_RELEASED, e -> mousePressed = false);
+        button.addEventFilter(MouseEvent.MOUSE_DRAGGED, e -> mousePressed = false);
         button.armedProperty().addListener((o, oldVal, newVal) -> {
-            playClickAnimation(-1);
+            if (newVal) {
+                if (!mousePressed) {
+                    playClickAnimation(1);
+                }
+            } else {
+                playClickAnimation(-1);
+            }
         });
         Theme.subscribeThemeChanges(() -> {
             applyColor(button.colorProperty().get(), button);
@@ -117,20 +128,19 @@ public final class MDButtonSkin extends ButtonSkin {
             );
             // end keyframe
             timeline.getKeyFrames().add(
-                    new KeyFrame(Duration.millis(1000),
+                    new KeyFrame(Duration.millis(10000),
                             new KeyValue(buttonShadow.radiusProperty(), Theme.getShadow(3).radiusProperty().get(), interpolation),
                             new KeyValue(buttonShadow.spreadProperty(), Theme.getShadow(3).spreadProperty().get(), interpolation),
                             new KeyValue(buttonShadow.offsetXProperty(), Theme.getShadow(3).offsetXProperty().get(), interpolation),
                             new KeyValue(buttonShadow.offsetYProperty(), Theme.getShadow(3).offsetYProperty().get(), interpolation)
                     )
             );
-            setCycleDuration(Duration.seconds(0.2));
+            setCycleDuration(Duration.seconds(1));
             setDelay(Duration.seconds(0));
         }
         
         @Override
         protected void interpolate(double d) {
-            System.out.println(d);
             timeline.playFrom(Duration.seconds(d));
             timeline.stop();
         }
