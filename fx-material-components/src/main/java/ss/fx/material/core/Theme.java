@@ -94,13 +94,18 @@ public class Theme {
     
     public static void elevation(int elevation, Parent node) {
         if (elevation < shadows.length) {
-            node.setEffect(shadows[elevation]);
+            DropShadow origin = shadows[elevation];
+            DropShadow copy = new DropShadow(origin.getBlurType(), origin.getColor(), origin.getRadius(), origin.getSpread(),
+                    origin.getOffsetX(), origin.getOffsetY());
+            node.setEffect(copy);
         }
     }
     
     public static DropShadow getShadow(int elevation) {
         if (elevation < shadows.length) {
-            return shadows[elevation];
+            DropShadow origin = shadows[elevation];
+            return new DropShadow(origin.getBlurType(), origin.getColor(), origin.getRadius(), origin.getSpread(),
+                    origin.getOffsetX(), origin.getOffsetY());
         }
         return null;
     }
