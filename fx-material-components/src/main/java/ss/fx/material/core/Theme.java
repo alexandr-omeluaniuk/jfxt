@@ -65,16 +65,25 @@ public class Theme {
      * @param color palette color.
      * @return RGBA value of palette color.
      */
+    @Deprecated
     public static String getPaletteColor(Palette color) {
         return toRgba(getColor(color));
+    }
+    public static Color paletteColor(Palette color) {
+        return colorCopy(getColor(color));
     }
     /**
      * Get contrast RGBA color (light or dark) for palette color.
      * @param color palette color.
      * @return color value as RGBA.
      */
+    @Deprecated
     public static String getContrastPaletteColor(Palette color) {
         return toRgba(getContrastColor(getColor(color)));
+    }
+    
+    public static Color contrastPaletteColor(Palette color) {
+        return colorCopy(getContrastColor(getColor(color)));
     }
     
     public static String getColorWithOffset(Palette color, double offset) {
@@ -177,5 +186,9 @@ public class Theme {
                 + 0.7152 * color.getGreen()
                 + 0.0722 * color.getBlue()) * 100;
         return luminance < 90 ? lightContrastColor : darkContrastColor;
+    }
+    
+    private static Color colorCopy(Color color) {
+        return new Color(color.getRed(), color.getGreen(), color.getBlue(), color.getOpacity());
     }
 }

@@ -13,36 +13,22 @@ and open the template in the editor.
     -fx-background-insets: 0px;
     -fx-font-family: "Roboto";
     -fx-font-weight: 700;
-    -fx-padding: 6px 8px;
     -fx-font-size: 16px;
     -fx-min-width: 64px;
 }
 
-.text-button {
-    -fx-background-color: transparent;
-    -fx-text-fill: rgba(0, 0, 0, 0.87);
-}
-.text-button:hover {
+.button:hover {
     -fx-cursor: hand;
+}
+
+.text-button {
+    -fx-padding: 6px 8px;
 }
 
 .contained-button {
-    -fx-background-color: #e0e0e0;
     -fx-padding: 6px 16px;
 }
 
-.contained-button:hover {
-    -fx-cursor: hand;
-}
-
 .outlined-button {
-    -fx-background-color: transparent;
-    -fx-text-fill: rgba(0, 0, 0, 0.87);
-    -fx-border-color: rgba(0, 0, 0, 0.87);
-    -fx-border-width: 1px;
     -fx-padding: 5px 15px;
-}
-
-.outlined-button:hover {
-    -fx-cursor: hand;
 }

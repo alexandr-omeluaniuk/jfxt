@@ -8,9 +8,19 @@ package ss.fx.material.skin;
 import java.util.Optional;
 import javafx.animation.Transition;
 import javafx.beans.value.ObservableValue;
+import javafx.geometry.Insets;
 import javafx.scene.control.skin.ButtonSkin;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.Border;
+import javafx.scene.layout.BorderStroke;
+import javafx.scene.layout.BorderStrokeStyle;
+import javafx.scene.layout.BorderWidths;
+import javafx.scene.layout.CornerRadii;
+import javafx.scene.paint.Color;
+import ss.fx.material.animation.HoverTransition;
 import ss.fx.material.animation.ShadowTransition;
 import ss.fx.material.component.MdButton;
 import ss.fx.material.component.MdButton.Variant;
@@ -24,10 +34,10 @@ import ss.fx.material.core.Theme;
 public final class MDButtonSkin extends ButtonSkin {
     /** Click animation. */
     private Transition clickAnimation;
+    /** Hover animation. */
+    private Transition hoverAnimation;
     
     private boolean mousePressed = false;
-    
-    private boolean hover = false;
     /**
      * Constructor.
      * @param button 
@@ -41,8 +51,16 @@ public final class MDButtonSkin extends ButtonSkin {
         button.colorProperty().addListener((ObservableValue<? extends Palette> ov, Palette oldValue, Palette newValue) -> {
             applyColor(newValue, button);
         });
+        button.backgroundColorProperty().addListener((ObservableValue<? extends Color> ov, Color oldValue, Color newValue) -> {
+            button.setBackground(new Background(new BackgroundFill(newValue, CornerRadii.EMPTY, Insets.EMPTY)));
+        });
+        button.textColorProperty().addListener((ObservableValue<? extends Color> ov, Color oldValue, Color newValue) -> {
+            button.setTextFill(newValue);
+        });
         applyVariant(button.variantProperty().get(), button);
         button.addEventHandler(MouseEvent.MOUSE_PRESSED, e -> playClickAnimation(1));
+        button.addEventHandler(MouseEvent.MOUSE_ENTERED, e -> playHoverAnimation(1));
+        button.addEventHandler(MouseEvent.MOUSE_EXITED, e -> playHoverAnimation(-1));
         button.addEventFilter(MouseEvent.MOUSE_PRESSED, e -> mousePressed = true);
         button.addEventFilter(MouseEvent.MOUSE_RELEASED, e -> mousePressed = false);
         button.addEventFilter(MouseEvent.MOUSE_DRAGGED, e -> mousePressed = false);
@@ -54,10 +72,6 @@ public final class MDButtonSkin extends ButtonSkin {
             } else {
                 playClickAnimation(-1);
             }
-        });
-        button.hoverProperty().addListener((ObservableValue<? extends Boolean> ov, Boolean oldValue, Boolean newValue) -> {
-            hover = newValue;
-            applyColor(button.colorProperty().get(), button);
         });
         Theme.subscribeThemeChanges(() -> {
             applyColor(button.colorProperty().get(), button);
@@ -72,18 +86,24 @@ public final class MDButtonSkin extends ButtonSkin {
         }
     }
     
+    private void playHoverAnimation(double rate) {
+        if (hoverAnimation != null) {
+            hoverAnimation.setRate(rate);
+            hoverAnimation.play();
+        }
+    }
+    
     private void applyVariant(MdButton.Variant variant, MdButton button) {
         button.getStyleClass().clear();
         button.getStyleClass().add("button");
+        hoverAnimation = new HoverTransition(null, null, button);
         switch (variant) {
             case TEXT:
                 button.getStyleClass().add("text-button");
                 break;
             case CONTAINED:
                 Theme.elevation(1, button);
-                if (clickAnimation == null) {
-                    clickAnimation = new ShadowTransition(1, 3, (DropShadow) button.getEffect());
-                }
+                clickAnimation = new ShadowTransition(1, 3, (DropShadow) button.getEffect());
                 button.getStyleClass().add("contained-button");
                 break;
             case OUTLINED:
@@ -100,28 +120,28 @@ public final class MDButtonSkin extends ButtonSkin {
         switch (variant) {
             case TEXT:
                 if (optional.isPresent()) {
-                    button.setStyle("-fx-text-fill: " + Theme.getPaletteColor(paletteColor) + ";"
-                        + "-fx-background-color: " + (hover ? Theme.getColorWithAlpha(paletteColor, 0.04) : "transparent") + ";");
+                    button.textColorProperty().set(Theme.paletteColor(paletteColor));
                 } else {
-                    button.setStyle("-fx-background-color: " + (hover ? "rgba(0, 0, 0, 0.04)" : "transparent") + ";");
+                    button.textColorProperty().set(Color.rgb(0, 0, 0, 0.87));
                 }
                 break;
             case CONTAINED:
                 if (optional.isPresent()) {
-                    button.setStyle("-fx-background-color: "
-                        + (hover ? Theme.getColorWithOffset(paletteColor, 0.8) : Theme.getPaletteColor(paletteColor))
-                        + "; -fx-text-fill: " + Theme.getContrastPaletteColor(paletteColor) + ";");
+                    button.backgroundColorProperty().set(Theme.paletteColor(paletteColor));
+                    button.textColorProperty().set(Theme.contrastPaletteColor(paletteColor));
                 } else {
-                    button.setStyle("-fx-background-color: " + (hover ? "#d5d5d5" : "#e0e0e0") + ";");
+                    button.backgroundColorProperty().set(Color.web("#e0e0e0"));
+                    button.textColorProperty().set(Color.rgb(0, 0, 0, 0.87));
                 }
                 break;
             case OUTLINED:
                 if (optional.isPresent()) {
-                    button.setStyle("-fx-border-color: " + Theme.getPaletteColor(paletteColor) + ";"
-                        + "-fx-text-fill: " + Theme.getPaletteColor(paletteColor) + ";"
-                        + "-fx-background-color: " + (hover ? Theme.getColorWithAlpha(paletteColor, 0.04) : "transparent") + ";");
+                    button.backgroundColorProperty().set(Color.TRANSPARENT);
+                    button.textColorProperty().set(Theme.paletteColor(paletteColor));
+                    button.setBorder(new Border(new BorderStroke(Theme.paletteColor(paletteColor),
+                            BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
                 } else {
-                    button.setStyle("-fx-background-color: " + (hover ? "rgba(0, 0, 0, 0.04)" : "transparent") + ";");
+                    button.backgroundColorProperty().set(Color.TRANSPARENT);
                 }
                 break;
             default:

@@ -9,6 +9,7 @@ import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.scene.control.Button;
 import javafx.scene.control.Skin;
+import javafx.scene.paint.Color;
 import ss.fx.material.api.PaletteColor;
 import ss.fx.material.constants.Palette;
 import ss.fx.material.skin.MDButtonSkin;
@@ -18,10 +19,14 @@ import ss.fx.material.skin.MDButtonSkin;
  * @author alex
  */
 public class MdButton extends Button implements PaletteColor {
-    /** Color. */
+    /** Palette color. */
     private final ObjectProperty<Palette> color = new SimpleObjectProperty<>(null);
     /** Variant. */
     private final ObjectProperty<Variant> variant = new SimpleObjectProperty<>(Variant.TEXT);
+    
+    private final ObjectProperty<Color> backgroundColor = new SimpleObjectProperty<>(null);
+    
+    private final ObjectProperty<Color> textColor = new SimpleObjectProperty<>(Color.rgb(0, 0, 0, 0.87));
     /**
      * Constructor.
      */
@@ -47,6 +52,12 @@ public class MdButton extends Button implements PaletteColor {
         return new MDButtonSkin(this);
     }
     // ===================================================== SET & GET ====================================================================
+    public ObjectProperty<Color> backgroundColorProperty() {
+        return this.backgroundColor;
+    }
+    public ObjectProperty<Color> textColorProperty() {
+        return this.textColor;
+    }
     public ObjectProperty<Palette> colorProperty() {
         return this.color;
     }
