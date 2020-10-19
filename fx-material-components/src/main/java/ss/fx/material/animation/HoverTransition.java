@@ -24,19 +24,18 @@ public class HoverTransition extends Transition {
     
     public HoverTransition(Color origin, Color hover, ObjectProperty<Color> nodeProperty) {
         timeline = new Timeline();
-        Interpolator interpolation = Interpolator.EASE_OUT;
         timeline.getKeyFrames().add(
                 new KeyFrame(Duration.ZERO,
-                        new KeyValue(nodeProperty, origin, interpolation)
+                        new KeyValue(nodeProperty, origin, Interpolator.EASE_OUT)
                 )
         );
         // end keyframe
         timeline.getKeyFrames().add(
-                new KeyFrame(Duration.millis(2000),
-                        new KeyValue(nodeProperty, hover, interpolation)
+                new KeyFrame(Duration.millis(1000),
+                        new KeyValue(nodeProperty, hover, Interpolator.EASE_IN)
                 )
         );
-        setCycleDuration(Duration.seconds(0.4));
+        setCycleDuration(Duration.seconds(0.2));
         setDelay(Duration.seconds(0));
     }
 

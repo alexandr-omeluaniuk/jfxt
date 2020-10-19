@@ -24,6 +24,8 @@ import ss.fx.material.core.Theme;
  * @author alex
  */
 public final class MDButtonSkin extends ButtonSkin {
+    /** Default alpha for default button colors. */
+    private static final double DEFAULT_ALPHA = 0.8;
     /** Click animation. */
     private Transition clickAnimation;
     /** Hover animation. */
@@ -66,6 +68,7 @@ public final class MDButtonSkin extends ButtonSkin {
         });
         Theme.subscribeThemeChanges(() -> {
             applyColor();
+            applyStyle();
         });
         applyColor();
         applyVariant();
@@ -120,7 +123,7 @@ public final class MDButtonSkin extends ButtonSkin {
                     button.textColorProperty().set(Theme.paletteColor(paletteColor));
                 } else {
                     button.backgroundColorProperty().set(Color.TRANSPARENT);
-                    button.textColorProperty().set(Color.rgb(0, 0, 0, 0.87));
+                    button.textColorProperty().set(Color.rgb(0, 0, 0, DEFAULT_ALPHA));
                 }
                 break;
             case CONTAINED:
@@ -129,7 +132,7 @@ public final class MDButtonSkin extends ButtonSkin {
                     button.textColorProperty().set(Theme.contrastPaletteColor(paletteColor));
                 } else {
                     button.backgroundColorProperty().set(Color.web("#e0e0e0"));
-                    button.textColorProperty().set(Color.rgb(0, 0, 0, 0.87));
+                    button.textColorProperty().set(Color.rgb(0, 0, 0, DEFAULT_ALPHA));
                 }
                 break;
             case OUTLINED:
@@ -138,7 +141,7 @@ public final class MDButtonSkin extends ButtonSkin {
                     button.textColorProperty().set(Theme.paletteColor(paletteColor));
                 } else {
                     button.backgroundColorProperty().set(Color.TRANSPARENT);
-                    button.textColorProperty().set(Color.rgb(0, 0, 0, 0.87));
+                    button.textColorProperty().set(Color.rgb(0, 0, 0, DEFAULT_ALPHA));
                 }
                 break;
             default:
