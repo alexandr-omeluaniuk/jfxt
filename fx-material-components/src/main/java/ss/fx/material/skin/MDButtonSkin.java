@@ -5,6 +5,7 @@
  */
 package ss.fx.material.skin;
 
+import java.util.Optional;
 import javafx.animation.Interpolator;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
@@ -98,26 +99,37 @@ public final class MDButtonSkin extends ButtonSkin {
     }
     
     private void applyColor(Palette paletteColor, MdButton button) {
-        if (paletteColor != null) {
-            Variant variant = button.variantProperty().get();
-            switch (variant) {
-                case TEXT:
+        Variant variant = button.variantProperty().get();
+        Optional<Palette> optional = Optional.ofNullable(paletteColor);
+        switch (variant) {
+            case TEXT:
+                if (optional.isPresent()) {
                     button.setStyle("-fx-text-fill: " + Theme.getPaletteColor(paletteColor) + ";"
-                            + "-fx-background-color: " + (hover ? Theme.getColorWithAlpha(paletteColor, 0.04) : "transparent") + ";");
-                    break;
-                case CONTAINED:
+                        + "-fx-background-color: " + (hover ? Theme.getColorWithAlpha(paletteColor, 0.04) : "transparent") + ";");
+                } else {
+                    button.setStyle("-fx-background-color: " + (hover ? "rgba(0, 0, 0, 0.04)" : "transparent") + ";");
+                }
+                break;
+            case CONTAINED:
+                if (optional.isPresent()) {
                     button.setStyle("-fx-background-color: "
-                            + (hover ? Theme.getColorWithOffset(paletteColor, 0.8) : Theme.getPaletteColor(paletteColor))
-                            + "; -fx-text-fill: " + Theme.getContrastPaletteColor(paletteColor) + ";");
-                    break;
-                case OUTLINED:
+                        + (hover ? Theme.getColorWithOffset(paletteColor, 0.8) : Theme.getPaletteColor(paletteColor))
+                        + "; -fx-text-fill: " + Theme.getContrastPaletteColor(paletteColor) + ";");
+                } else {
+                    button.setStyle("-fx-background-color: " + (hover ? "#d5d5d5" : "#e0e0e0") + ";");
+                }
+                break;
+            case OUTLINED:
+                if (optional.isPresent()) {
                     button.setStyle("-fx-border-color: " + Theme.getPaletteColor(paletteColor) + ";"
-                            + "-fx-text-fill: " + Theme.getPaletteColor(paletteColor) + ";"
-                            + "-fx-background-color: " + (hover ? Theme.getColorWithAlpha(paletteColor, 0.04) : "transparent") + ";");
-                    break;
-                default:
-                    break;
-            }
+                        + "-fx-text-fill: " + Theme.getPaletteColor(paletteColor) + ";"
+                        + "-fx-background-color: " + (hover ? Theme.getColorWithAlpha(paletteColor, 0.04) : "transparent") + ";");
+                } else {
+                    button.setStyle("-fx-background-color: " + (hover ? "rgba(0, 0, 0, 0.04)" : "transparent") + ";");
+                }
+                break;
+            default:
+                break;
         }
     }
     // ====================================================== INNER CLASSES ===============================================================
