@@ -85,24 +85,14 @@ public class Theme {
     public static Color contrastPaletteColor(Palette color) {
         return colorCopy(getContrastColor(getColor(color)));
     }
-    
-    public static String getColorWithOffset(Palette color, double offset) {
-        Color c = getColor(color);
+    public static Color getColorWithOffset(Color c, double offset) {
         int red = (int) (255 * c.getRed() * offset);
         int green = (int) (255 * c.getGreen() * offset);
         int blue = (int) (255 * c.getBlue() * offset);
         red = red > 255 ? 255 : red;
         green = green > 255 ? 255 : green;
         blue = blue > 255 ? 255 : blue;
-        return toRgba(Color.rgb(red, green, blue));
-    }
-    
-    public static String getColorWithAlpha(Palette color, double alpha) {
-        Color c = getColor(color);
-        int red = (int) (255 * c.getRed());
-        int green = (int) (255 * c.getGreen());
-        int blue = (int) (255 * c.getBlue());
-        return toRgba(Color.rgb(red, green, blue, alpha));
+        return Color.rgb(red, green, blue);
     }
     /**
      * Get palette color of parent node.
@@ -143,6 +133,18 @@ public class Theme {
             component.updateComponent();
         });
     }
+    /**
+     * Convert color to RGBA.
+     * @param color color.
+     * @return RGBA value.
+     */
+    public static String toRgba(Color color) {
+        int r = (int) (255 * color.getRed());
+        int g = (int) (255 * color.getGreen());
+        int b = (int) (255 * color.getBlue());
+        int a = (int) (255 * color.getOpacity());
+        return String.format("#%02x%02x%02x%02x", r, g, b, a);
+    }
     // ===================================================== SET & GET ====================================================================
     public static Color getPrimaryColor() {
         return primaryColor;
@@ -151,18 +153,6 @@ public class Theme {
         primaryColor = base;
     }
     // ===================================================== PRIVATE ======================================================================
-    /**
-     * Convert color to RGBA.
-     * @param color color.
-     * @return RGBA value.
-     */
-    private static String toRgba(Color color) {
-        int r = (int) (255 * color.getRed());
-        int g = (int) (255 * color.getGreen());
-        int b = (int) (255 * color.getBlue());
-        int a = (int) (255 * color.getOpacity());
-        return String.format("#%02x%02x%02x%02x", r, g, b, a);
-    }
     /**
      * Get palette color property.
      * @param color palette color.

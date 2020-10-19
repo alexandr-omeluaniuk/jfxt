@@ -6,8 +6,11 @@
 package ss.fx.material.animation;
 
 import javafx.animation.Interpolator;
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
 import javafx.animation.Transition;
-import javafx.scene.layout.Region;
+import javafx.beans.property.ObjectProperty;
 import javafx.scene.paint.Color;
 import javafx.util.Duration;
 
@@ -17,27 +20,29 @@ import javafx.util.Duration;
  */
 public class HoverTransition extends Transition {
     
-    private final Region node;
+    private final Timeline timeline;
     
-    private final Color origin;
-    
-    private final Color hover;
-    
-    public HoverTransition(Color origin, Color hover, Region node) {
-        this.node = node;
-        this.origin = origin;
-        this.hover = hover;
-        setCycleDuration(Duration.millis(1000));
-        setInterpolator(Interpolator.EASE_OUT);
+    public HoverTransition(Color origin, Color hover, ObjectProperty<Color> nodeProperty) {
+        timeline = new Timeline();
+        Interpolator interpolation = Interpolator.EASE_OUT;
+        timeline.getKeyFrames().add(
+                new KeyFrame(Duration.ZERO,
+                        new KeyValue(nodeProperty, origin, interpolation)
+                )
+        );
+        // end keyframe
+        timeline.getKeyFrames().add(
+                new KeyFrame(Duration.millis(2000),
+                        new KeyValue(nodeProperty, hover, interpolation)
+                )
+        );
+        setCycleDuration(Duration.seconds(0.4));
+        setDelay(Duration.seconds(0));
     }
 
     @Override
     protected void interpolate(double d) {
-        //System.out.println(d);
-        //this.node.setBackground(new Background(new BackgroundFill(getIntermediateColor(d), CornerRadii.EMPTY, Insets.EMPTY)));
-    }
-    
-    private Color getIntermediateColor(double progress) {
-        return null;
+        timeline.playFrom(Duration.seconds(d));
+        timeline.stop();
     }
 }

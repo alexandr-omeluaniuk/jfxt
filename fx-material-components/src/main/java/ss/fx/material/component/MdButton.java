@@ -23,9 +23,9 @@ public class MdButton extends Button implements PaletteColor {
     private final ObjectProperty<Palette> color = new SimpleObjectProperty<>(null);
     /** Variant. */
     private final ObjectProperty<Variant> variant = new SimpleObjectProperty<>(Variant.TEXT);
-    
+    /** Background color. */
     private final ObjectProperty<Color> backgroundColor = new SimpleObjectProperty<>(null);
-    
+    /** Text color. */
     private final ObjectProperty<Color> textColor = new SimpleObjectProperty<>(Color.rgb(0, 0, 0, 0.87));
     /**
      * Constructor.

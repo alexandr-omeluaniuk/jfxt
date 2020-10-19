@@ -8,16 +8,12 @@ package ss.fx.material.skin;
 import java.util.Optional;
 import javafx.animation.Transition;
 import javafx.beans.value.ObservableValue;
-import javafx.geometry.Insets;
 import javafx.scene.control.skin.ButtonSkin;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.Border;
 import javafx.scene.layout.BorderStroke;
 import javafx.scene.layout.BorderStrokeStyle;
-import javafx.scene.layout.BorderWidths;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.paint.Color;
 import ss.fx.material.animation.HoverTransition;
@@ -52,12 +48,14 @@ public final class MDButtonSkin extends ButtonSkin {
             applyColor(newValue, button);
         });
         button.backgroundColorProperty().addListener((ObservableValue<? extends Color> ov, Color oldValue, Color newValue) -> {
-            button.setBackground(new Background(new BackgroundFill(newValue, CornerRadii.EMPTY, Insets.EMPTY)));
+            button.setStyle("-fx-background-color: " + Theme.toRgba(newValue));
         });
         button.textColorProperty().addListener((ObservableValue<? extends Color> ov, Color oldValue, Color newValue) -> {
             button.setTextFill(newValue);
         });
-        applyVariant(button.variantProperty().get(), button);
+//        button.borderProperty().addListener((ObservableValue<? extends Border> ov, Border t, Border t1) -> {
+//            applyColor(button.getColor(), button);
+//        });
         button.addEventHandler(MouseEvent.MOUSE_PRESSED, e -> playClickAnimation(1));
         button.addEventHandler(MouseEvent.MOUSE_ENTERED, e -> playHoverAnimation(1));
         button.addEventHandler(MouseEvent.MOUSE_EXITED, e -> playHoverAnimation(-1));
@@ -77,6 +75,7 @@ public final class MDButtonSkin extends ButtonSkin {
             applyColor(button.colorProperty().get(), button);
         });
         applyColor(button.colorProperty().get(), button);
+        applyVariant(button.variantProperty().get(), button);
     }
     // ==================================================== PRIVATE =======================================================================
     private void playClickAnimation(double rate) {
@@ -96,7 +95,6 @@ public final class MDButtonSkin extends ButtonSkin {
     private void applyVariant(MdButton.Variant variant, MdButton button) {
         button.getStyleClass().clear();
         button.getStyleClass().add("button");
-        hoverAnimation = new HoverTransition(null, null, button);
         switch (variant) {
             case TEXT:
                 button.getStyleClass().add("text-button");
@@ -120,8 +118,10 @@ public final class MDButtonSkin extends ButtonSkin {
         switch (variant) {
             case TEXT:
                 if (optional.isPresent()) {
+                    button.backgroundColorProperty().set(Color.TRANSPARENT);
                     button.textColorProperty().set(Theme.paletteColor(paletteColor));
                 } else {
+                    button.backgroundColorProperty().set(Color.TRANSPARENT);
                     button.textColorProperty().set(Color.rgb(0, 0, 0, 0.87));
                 }
                 break;
@@ -139,13 +139,19 @@ public final class MDButtonSkin extends ButtonSkin {
                     button.backgroundColorProperty().set(Color.TRANSPARENT);
                     button.textColorProperty().set(Theme.paletteColor(paletteColor));
                     button.setBorder(new Border(new BorderStroke(Theme.paletteColor(paletteColor),
-                            BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+                            BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderStroke.THIN)));
                 } else {
                     button.backgroundColorProperty().set(Color.TRANSPARENT);
+                    button.textColorProperty().set(Color.rgb(0, 0, 0, 0.87));
+                    button.setBorder(new Border(new BorderStroke(Color.rgb(0, 0, 0, 0.87),
+                            BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderStroke.THIN)));
                 }
                 break;
             default:
                 break;
         }
+        Color color = button.backgroundColorProperty().get();
+        Color hoverColor = color.equals(Color.TRANSPARENT) ? Color.rgb(0, 0, 0, 0.04) : Theme.getColorWithOffset(color, 0.8);
+        hoverAnimation = new HoverTransition(color, hoverColor, button.backgroundColorProperty());
     }
 }
