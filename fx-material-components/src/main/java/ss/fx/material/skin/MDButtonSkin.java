@@ -6,16 +6,12 @@
 package ss.fx.material.skin;
 
 import java.util.Optional;
-import javafx.animation.Interpolator;
-import javafx.animation.KeyFrame;
-import javafx.animation.KeyValue;
-import javafx.animation.Timeline;
 import javafx.animation.Transition;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.control.skin.ButtonSkin;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.input.MouseEvent;
-import javafx.util.Duration;
+import ss.fx.material.animation.ShadowTransition;
 import ss.fx.material.component.MdButton;
 import ss.fx.material.component.MdButton.Variant;
 import ss.fx.material.constants.Palette;
@@ -86,7 +82,7 @@ public final class MDButtonSkin extends ButtonSkin {
             case CONTAINED:
                 Theme.elevation(1, button);
                 if (clickAnimation == null) {
-                    clickAnimation = new ButtonClickTransition((DropShadow) button.getEffect());
+                    clickAnimation = new ShadowTransition(1, 3, (DropShadow) button.getEffect());
                 }
                 button.getStyleClass().add("contained-button");
                 break;
@@ -130,42 +126,6 @@ public final class MDButtonSkin extends ButtonSkin {
                 break;
             default:
                 break;
-        }
-    }
-    // ====================================================== INNER CLASSES ===============================================================
-    
-    private class ButtonClickTransition extends Transition {
-        
-        private final Timeline timeline;
-        
-        public ButtonClickTransition(DropShadow buttonShadow) {
-            timeline = new Timeline();
-            Interpolator interpolation = Interpolator.EASE_BOTH;
-            timeline.getKeyFrames().add(
-                    new KeyFrame(Duration.ZERO,
-                            new KeyValue(buttonShadow.radiusProperty(), Theme.getShadow(1).radiusProperty().get(), interpolation),
-                            new KeyValue(buttonShadow.spreadProperty(), Theme.getShadow(1).spreadProperty().get(), interpolation),
-                            new KeyValue(buttonShadow.offsetXProperty(), Theme.getShadow(1).offsetXProperty().get(), interpolation),
-                            new KeyValue(buttonShadow.offsetYProperty(), Theme.getShadow(1).offsetYProperty().get(), interpolation)
-                    )
-            );
-            // end keyframe
-            timeline.getKeyFrames().add(
-                    new KeyFrame(Duration.millis(1000),
-                            new KeyValue(buttonShadow.radiusProperty(), Theme.getShadow(3).radiusProperty().get(), interpolation),
-                            new KeyValue(buttonShadow.spreadProperty(), Theme.getShadow(3).spreadProperty().get(), interpolation),
-                            new KeyValue(buttonShadow.offsetXProperty(), Theme.getShadow(3).offsetXProperty().get(), interpolation),
-                            new KeyValue(buttonShadow.offsetYProperty(), Theme.getShadow(3).offsetYProperty().get(), interpolation)
-                    )
-            );
-            setCycleDuration(Duration.seconds(0.1));
-            setDelay(Duration.seconds(0));
-        }
-        
-        @Override
-        protected void interpolate(double d) {
-            timeline.playFrom(Duration.seconds(d));
-            timeline.stop();
         }
     }
 }
